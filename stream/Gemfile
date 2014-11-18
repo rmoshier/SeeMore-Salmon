@@ -54,3 +54,5 @@ end
 
 gem "omniauth"
 gem "omniauth-github"
+
+gem "omniauth-vimeo"
