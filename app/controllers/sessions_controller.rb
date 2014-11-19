@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
       c = User.create(insta_uid: @a)
       session[:user_id] = c.id
     end
+    redirect_to root_path
 
   end
 
