@@ -5,12 +5,22 @@ class SessionsController < ApplicationController
     auth_hash = request.env['omniauth.auth']
     @a = auth_hash["uid"]
 
-    # @user = User.new(params.require(:user).permit(:github_uid))
-
-    login = User.find_by_auth_hash[:provider]_uid: request.env["omniauth.auth"]["uid"])
-    if login.empty?
-      User.create((auth_hash[:provider]): request.env["omniauth.auth"][:uid])
+    provider = auth_hash["provider"]
+    if provider == 'github'
+      User.create(github_uid: @a)
+    elsif provider == 'twitter'
+      User.create(twitter_uid: auth_hash["uid"])
+    elsif provider == 'vimeo'
+      User.create(vimeo_uid: auth_hash["uid"])
+    elsif
+      User.create(insta_uid: auth_hash["uid"])
+    else
+      User.create(twitter_uid: auth_hash["uid"])
+    raise
     end
+  end
+
+    # @user = User.new(params.require(:user).permit(:github_uid))
 
     # if provider == 'github'
     #   c = User.create(github_uid: @a)
@@ -25,15 +35,13 @@ class SessionsController < ApplicationController
     #   User.create(insta_uid: @a)
     #   session[:user_id] = c.id
 
-    raise
+
+
+
+  def destory
+    session[:id] = nil
+    redirect_to root_path
   end
-
-
-
-    def destory
-      session[:id] = nil
-      redirect_to root_path
-    end
 end
 
 

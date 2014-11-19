@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :users
-  get "/", to: "home#index"
+  # Application home
+  root "home#index"
 
+  # User routes
+  get "/users",                   to: "users#index",           as: :users
+  get "/users/new",               to: "users#new",             as: :new_user
+  post "/users/create",           to: "users#create"
+  get "users/:id",                to: "users#show",            as: :user
+
+  # OAuth routes
+  # /auth/:provider triggers the auth action; user is returned to: 
   get "/auth/:provider/callback", to: "sessions#create"
 
 
