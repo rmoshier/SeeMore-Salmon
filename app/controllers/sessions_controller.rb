@@ -11,8 +11,10 @@ class SessionsController < ApplicationController
       User.create(twitter_uid: auth_hash["uid"])
     elsif provider == 'vimeo'
       User.create(vimeo_uid: auth_hash["uid"])
-    else
+    elsif
       User.create(insta_uid: auth_hash["uid"])
+    else
+      User.create(twitter_uid: auth_hash["uid"])
     end
     raise
   end
