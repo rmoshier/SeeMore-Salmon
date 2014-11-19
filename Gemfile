@@ -57,4 +57,5 @@ gem "omniauth-github"
 gem 'omniauth-twitter'
 gem "omniauth-vimeo"
 
+gem "twitter"
 gem "vimeo"
