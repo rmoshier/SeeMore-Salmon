@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       User.create(twitter_uid: auth_hash["uid"])
     raise
     end
+    redirect_to root_path
   end
 
     # @user = User.new(params.require(:user).permit(:github_uid))
