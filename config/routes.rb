@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "users/:id",                to: "users#show",            as: :user
 
   # OAuth routes
+  # /auth/:provider triggers the auth action; user is returned to: 
   get "/auth/:provider/callback", to: "sessions#create"
 
 
