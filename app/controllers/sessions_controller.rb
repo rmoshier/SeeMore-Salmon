@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     session[:id] = nil
     redirect_to root_path
   end
-
 end
 
 #login = User.where(tostring: request.env["omniauth.auth"][:uid])
