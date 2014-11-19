@@ -1,5 +1,6 @@
 class VimeoController < ApplicationController
   def new
+    @user_info = Vimeo::Simple::User.info("beyonce")
   end
 
   def create

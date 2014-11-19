@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
       User.create(insta_uid: auth_hash["uid"])
     end
-    raise
+    #raise
   end
 
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create"
 
   # VIMEO CONTROLLER ROUTES
-  get 'vimeo/new'
+  get 'vimeo/new', to: "vimeo#new", as: :vimeo
   get 'vimeo/create'
   get 'vimeo/update'
   get 'vimeo/edit'
