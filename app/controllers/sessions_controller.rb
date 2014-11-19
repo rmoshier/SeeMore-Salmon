@@ -15,26 +15,29 @@ class SessionsController < ApplicationController
     if @provider == 'github'
       if login = User.find_by(github_uid: @a)
         User.find(session[:user_id])
-      else login.empty?
+      else
         c = User.create(github_uid: @a)
         session[:user_id] = c.id
       end
     elsif @provider == 'twitter'
       if login = User.find_by(twitter_uid: @a)
         User.find(session[:user_id])
-      else c = User.create(twitter_uid: @a)
+      else
+        c = User.create(twitter_uid: @a)
         session[:user_id] = c.id
       end
     elsif @provider == 'vimeo'
       if login = User.find_by(vimeo_uid: @a)
         User.find(session[:user_id])
-      else c = User.create(vimeo_uid: @a)
+      else
+        c = User.create(vimeo_uid: @a)
         session[:user_id] = c.id
       end
     else
       if login = User.find_by(vimeo_uid: @a)
         User.find(session[:user_id])
-      else c = User.create(insta_uid: @a)
+      else
+        c = User.create(insta_uid: @a)
         session[:user_id] = c.id
       end
     end
