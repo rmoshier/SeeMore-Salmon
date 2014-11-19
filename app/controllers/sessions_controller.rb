@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController
 
   def require_login
-
+    auth_hash = request.env['omniauth.auth']
+    @a = auth_hash["uid"]
+    @provider = auth_hash[:provider]
 
     # @user = User.new(params.require(:user).permit(:github_uid))
 
@@ -17,10 +19,10 @@ class SessionsController < ApplicationController
       c = User.create(twitter_uid: @a)
       session[:user_id] = c.id
     elsif @provider == 'vimeo'
-      User.create(vimeo_uid: @a)
+      c = User.create(vimeo_uid: @a)
       session[:user_id] = c.id
     else
-      User.create(insta_uid: @a)
+      c = User.create(insta_uid: @a)
       session[:user_id] = c.id
     end
 
