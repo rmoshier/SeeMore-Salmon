@@ -56,3 +56,5 @@ gem "omniauth"
 gem "omniauth-github"
 
 gem "omniauth-vimeo"
+
+gem "vimeo"
