@@ -16,3 +16,4 @@ class SessionsController < ApplicationController
     end
     raise
   end
+end
