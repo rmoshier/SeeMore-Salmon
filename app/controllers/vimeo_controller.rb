@@ -8,7 +8,6 @@ class VimeoController < ApplicationController
   def search
     @name = params['search']
     @user_info = Vimeo::Simple::User.info("#{@name}")
-    redirect_to vimeo_path
   end
 
   def new
