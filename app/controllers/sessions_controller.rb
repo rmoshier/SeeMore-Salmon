@@ -16,12 +16,13 @@ class SessionsController < ApplicationController
       c = User.create(twitter_uid: @a)
       session[:user_id] = c.id
     elsif provider == 'vimeo'
-      User.create(vimeo_uid: @a)
+      c = User.create(vimeo_uid: @a)
       session[:user_id] = c.id
     else
       User.create(insta_uid: @a)
       session[:user_id] = c.id
     end
+    redirect_to root_path
   end
 
 end

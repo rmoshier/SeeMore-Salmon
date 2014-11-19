@@ -3,18 +3,20 @@ Rails.application.routes.draw do
 
 
   resources :users
-  get "/", to: "home#index"
+  get "/", to: "home#index", as: :root
 
   get "/auth/:provider/callback", to: "sessions#create"
 
   # VIMEO CONTROLLER ROUTES
-  get 'vimeo/new', to: "vimeo#new", as: :vimeo
-  get 'vimeo/create'
-  get 'vimeo/update'
-  get 'vimeo/edit'
-  get 'vimeo/destroy'
-  get 'vimeo/show'
-  get 'vimeo/index'
+  get 'vimeo/index', to: "vimeo#index", as: :vimeo
+  get 'vimeo/search', to: "vimeo#search", as: :vimeo_search
+  get 'vimeo/new', to: "vimeo#new"
+  put 'vimeo/create', to: "vimeo#create"
+  get 'vimeo/update', to: "vimeo#update"
+  patch 'vimeo/edit', to: "vimeo#edit"
+  delete 'vimeo/destroy', to: "vimeo#destroy"
+  get 'vimeo/show/:uid', to: "vimeo#show"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

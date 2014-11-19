@@ -1,6 +1,17 @@
 class VimeoController < ApplicationController
-  def new
+
+  def index
     @user_info = Vimeo::Simple::User.info("beyonce")
+    @user_name = @user_info["display_name"]
+  end
+
+  def search
+    @name = params['search']
+    @user_info = Vimeo::Simple::User.info("#{@name}")
+    redirect_to vimeo_path
+  end
+
+  def new
   end
 
   def create
@@ -18,6 +29,5 @@ class VimeoController < ApplicationController
   def show
   end
 
-  def index
-  end
+
 end
