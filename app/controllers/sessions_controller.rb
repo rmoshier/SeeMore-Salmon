@@ -17,4 +17,21 @@ class SessionsController < ApplicationController
     raise
   end
 
+  def destory
+    session[:id] = nil
+    redirect_to root_path
+  end
 end
+
+
+
+
+
+
+#login = User.where(uid: request.env["omniauth.auth"][:uid], provider: request.env["omniauth.auth"][:provider])
+if login.empty?
+  #create user
+  #save it
+  #push into model
+  #then start a session
+#REDIRECT!
