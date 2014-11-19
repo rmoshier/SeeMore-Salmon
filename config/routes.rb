@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'vimeo/index', to: "vimeo#index", as: :vimeo
   get 'vimeo/search', to: "vimeo#search", as: :vimeo_search
   get 'vimeo/new', to: "vimeo#new", as: :new_vimeo
-  put 'vimeo/create', to: "vimeo#create"
+  post 'vimeo/create', to: "vimeo#create", as: :create_vimeo
   get 'vimeo/update', to: "vimeo#update"
   patch 'vimeo/edit', to: "vimeo#edit"
   delete 'vimeo/destroy', to: "vimeo#destroy"
