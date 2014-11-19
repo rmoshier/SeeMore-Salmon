@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Application home
-  root "home#index"
+  get "/", to: "home#index", as: :root
 
   # User routes
   get "/users",                   to: "users#index",           as: :users
@@ -10,8 +10,18 @@ Rails.application.routes.draw do
   get "users/:id",                to: "users#show",            as: :user
 
   # OAuth routes
-  # /auth/:provider triggers the auth action; user is returned to: 
+  # /auth/:provider triggers the auth action; user is returned to:
   get "/auth/:provider/callback", to: "sessions#create"
+
+  # VIMEO CONTROLLER ROUTES
+  get 'vimeo/index', to: "vimeo#index", as: :vimeo
+  get 'vimeo/search', to: "vimeo#search", as: :vimeo_search
+  get 'vimeo/new', to: "vimeo#new"
+  put 'vimeo/create', to: "vimeo#create"
+  get 'vimeo/update', to: "vimeo#update"
+  patch 'vimeo/edit', to: "vimeo#edit"
+  delete 'vimeo/destroy', to: "vimeo#destroy"
+  get 'vimeo/show/:uid', to: "vimeo#show"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
