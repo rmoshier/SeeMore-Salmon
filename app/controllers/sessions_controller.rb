@@ -1,19 +1,26 @@
 class SessionsController < ApplicationController
 
   def create
+
     auth_hash = request.env['omniauth.auth']
     @a = auth_hash["uid"]
 
+    # @user = User.new(params.require(:user).permit(:github_uid))
+
     provider = auth_hash["provider"]
+
     if provider == 'github'
-      User.create(github_uid: @a)
+      c = User.create(github_uid: @a)
+      session[:user_id] = c.id
     elsif provider == 'twitter'
-      User.create(twitter_uid: auth_hash["uid"])
+      c = User.create(twitter_uid: @a)
+      session[:user_id] = c.id
     elsif provider == 'vimeo'
-      User.create(vimeo_uid: auth_hash["uid"])
+      User.create(vimeo_uid: @a)
+      session[:user_id] = c.id
     else
-      User.create(insta_uid: auth_hash["uid"])
+      User.create(insta_uid: @a)
+      session[:user_id] = c.id
     end
-    raise
   end
 end
