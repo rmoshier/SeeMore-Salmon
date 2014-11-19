@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     @a = auth_hash["uid"]
     @provider = auth_hash[:provider]
 
-    # @user = User.new(params.require(:user).permit(:github_uid))
+
 
     # login = User.find_by_auth_hash[:@provider]_uid: request.env["omniauth.auth"]["uid"])
     # if login.empty?
@@ -13,20 +13,32 @@ class SessionsController < ApplicationController
     # end
 
     if @provider == 'github'
-      c = User.create(github_uid: @a)
-      session[:user_id] = c.id
+      if login = User.find_by(github_uid: @a)
+        User.find(session[:user_id])
+      else login.empty?
+        c = User.create(github_uid: @a)
+        session[:user_id] = c.id
+      end
     elsif @provider == 'twitter'
-      c = User.create(twitter_uid: @a)
-      session[:user_id] = c.id
+      if login = User.find_by(twitter_uid: @a)
+        User.find(session[:user_id])
+      else c = User.create(twitter_uid: @a)
+        session[:user_id] = c.id
+      end
     elsif @provider == 'vimeo'
-      c = User.create(vimeo_uid: @a)
-      session[:user_id] = c.id
+      if login = User.find_by(vimeo_uid: @a)
+        User.find(session[:user_id])
+      else c = User.create(vimeo_uid: @a)
+        session[:user_id] = c.id
+      end
     else
-      c = User.create(insta_uid: @a)
-      session[:user_id] = c.id
+      if login = User.find_by(vimeo_uid: @a)
+        User.find(session[:user_id])
+      else c = User.create(insta_uid: @a)
+        session[:user_id] = c.id
+      end
     end
     redirect_to root_path
-
   end
 
   def destroy
