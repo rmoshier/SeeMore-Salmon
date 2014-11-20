@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "/users/create",           to: "users#create"
   get "users/:id",                to: "users#show",            as: :user
 
-    # Sign-in / authenticated user routes
+  # Sign-in / authenticated user routes
   get "/login",                   to: "sessions#new",          as: :login
 
   # OAuth routes
@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#require_login"
   get "/logout",                  to: "sessions#destroy",      as: :logout
 
-  # VIMEO CONTROLLER ROUTES
-
+  # Vimeo routes
   get 'vimeo/index',              to: "vimeo#index",    as: :vimeo
   get 'vimeo/search',             to: "vimeo#search",   as: :vimeo_search
   get 'vimeo/new',                to: "vimeo#new",      as: :new_vimeo
@@ -34,7 +33,7 @@ Rails.application.routes.draw do
   post '/twitter/create',         to: 'twitter#create'
 
 
-  get 'instagram/index',          to: "instagram#index", as: :instagram 
+  get 'instagram/index',          to: "instagram#index", as: :instagram
 
 
   # The priority is based upon order of creation: first created -> highest priority.
