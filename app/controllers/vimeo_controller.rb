@@ -15,6 +15,9 @@ class VimeoController < ApplicationController
   end
 
   def create
+    @vimeo_username = params['vimeo_username']
+    @vimeo_uid = params['vimeo_uid']
+    @vimeo_display_name = params['vimeo_display_name']
   end
 
   def update
