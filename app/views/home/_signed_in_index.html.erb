@@ -1,4 +1,15 @@
 <div class="container">
   <h3><%= link_to "Search for Twitter Users", new_twitter_path %></h3>
   <h3><%= link_to "Search for Vimeo Users", new_vimeo_path %></h3>
+  
+  <div class="vimeofeed">
+    <% @vimeo_vids.each do | vid | %>
+      <h3><%= vid["title"] %></h3>
+      <h4><%= vid["username"] %></h4>
+      <a href="<%= vid["url"] %>">
+        <img src="<%= vid["thumbnail_medium"] %>" alt="image thumbnail" />
+      </a>
+    <% end %>
+  </div>
+
 </div>
