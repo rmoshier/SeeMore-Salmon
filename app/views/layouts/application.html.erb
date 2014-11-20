@@ -8,14 +8,7 @@
 </head>
 <body>
 
-  <div class = "container">
-
-    <% if session[:user_id] %>
-      <%= render "layouts/signedin" %>
-    <% else %>
-      <%= render "layouts/guest" %>
-    <% end %>
-  </div>
+  
 
 <%= yield %>
 

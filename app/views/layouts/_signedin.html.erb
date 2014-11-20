@@ -1,15 +1,6 @@
-<div = 'container'>
+<div class="container">
+  <header>
   <%= link_to "logout", logout_path %>
+  </header>
 
-  <%= link_to "vimeo search", new_vimeo_path %>
-
-  <div class="vimeofeed">
-    <% @vimeo_vids.each do | vid | %>
-      <h3><%= vid["title"] %></h3>
-      <h4><%= vid["username"] %></h4>
-      <a href="<%= vid["url"] %>">
-        <img src="<%= vid["thumbnail_medium"] %>" alt="image thumbnail" />
-      </a>
-    <% end %>
-  </div>
 </div>
