@@ -6,9 +6,12 @@ class ApplicationController < ActionController::Base
   def current_user
     # pulls out session id
     @user = User.find(session[:user_id])
+  end
+
+    #session[:user_id] = user.id
     # that is the session
     # this method is what we require on the user controller w/out breaking the home page
-  end
+end
 
 #     auth_hash = request.env['omniauth.auth']
 #     @a = auth_hash["uid"]
@@ -59,4 +62,3 @@ class ApplicationController < ActionController::Base
 #   # need to add if they alredy exist
 #
 #
-end
