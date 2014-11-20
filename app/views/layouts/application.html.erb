@@ -7,14 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-  <header>
+
+  <div class = "container">
+
     <% if session[:user_id] %>
       <%= render "layouts/signedin" %>
     <% else %>
       <%= render "layouts/guest" %>
     <% end %>
-  </header>
+  </div>
 
 <%= yield %>
 
