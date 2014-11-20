@@ -15,6 +15,11 @@ class VimeoController < ApplicationController
   end
 
   def create
+    @vimeo_username = params['vimeo_username']
+    @vimeo_uid = params['vimeo_uid']
+    @vimeo_display_name = params['vimeo_display_name']
+    #save to database as new subscription
+    #redirect_to root_path
   end
 
   def update
