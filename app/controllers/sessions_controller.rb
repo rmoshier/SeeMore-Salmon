@@ -28,6 +28,13 @@ class SessionsController < ApplicationController
         user = User.create(vimeo_uid: @uid)
         session[:user_id] = user.id
       end
+    else
+      if user = User.find_by_insta_uid(@uid)
+        session[:user_id] = user.id
+      else
+        user = User.create(insta_uid: @uid)
+        session[:user_id] = user.id
+      end
     end
     redirect_to root_path
   end
