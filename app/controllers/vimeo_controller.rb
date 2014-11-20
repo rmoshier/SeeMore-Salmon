@@ -1,5 +1,6 @@
 class VimeoController < ApplicationController
-
+  before_action :current_user
+  
   def index
     @user_info = Vimeo::Simple::User.info("beyonce")
     @user_name = @user_info["display_name"]
