@@ -10,6 +10,15 @@ body {
   font-family: Helvetica;
 }
 
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 15px;
+  text-align: center;
+}
+
 a {
   color: blue;
 }
@@ -25,8 +34,6 @@ a:hover {
 header {
   // background-color: lightblue;
 }
-
-
 
 .user-status {
   position: absolute;
