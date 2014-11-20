@@ -60,3 +60,4 @@ gem "omniauth-instagram"
 
 gem "twitter"
 gem "vimeo"
+gem "instagram"
