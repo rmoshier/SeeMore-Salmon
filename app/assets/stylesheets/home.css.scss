@@ -28,6 +28,10 @@ a:hover {
   text-decoration: none;
 }
 
+canvas {
+height: 1000px;
+}
+
 /****************/
 /*Header Styling*/
 /****************/
@@ -66,4 +70,20 @@ header h1 {
 
 .search {
   padding-bottom: 20px;
+}
+
+#picbox {
+  margin: 100px 0 0 0;
+}
+
+/*******/
+/*Links*/
+/*******/
+
+a {
+  color: white;
+}
+
+a.hover {
+  color: white;
 }
