@@ -15,10 +15,12 @@ class VimeoController < ApplicationController
   end
 
   def create
-    @vimeo_username = params['vimeo_username']
-    @vimeo_uid = params['vimeo_uid']
+    @vimeo_username = params['username']
+    @vimeo_uid = params['subscription_uid']
     @vimeo_display_name = params['vimeo_display_name']
     #save to database as new subscription
+    @vimeo_subscription = Subscription.new(params.require(:vimeo).permit(:username, :subscription_uid))
+    @vimeo_subscription.update(user_id: session[:id], provider: 'vimeo')
     #redirect_to root_path
   end
 
