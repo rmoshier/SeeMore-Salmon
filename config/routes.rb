@@ -32,8 +32,9 @@ Rails.application.routes.draw do
   get '/twitter/search',          to: 'twitter#show',          as: :twitter_search
   post '/twitter/create',         to: 'twitter#create'
 
-
-  get 'instagram/index',          to: "instagram#index", as: :instagram
+  #Instagram routes
+  get '/instagram/index',          to: "instagram#index", as: :instagram
+  get '/instagram/search',         to: "instagram#search", as: :instagram_search 
 
 
   # The priority is based upon order of creation: first created -> highest priority.
