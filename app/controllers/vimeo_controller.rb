@@ -3,6 +3,7 @@ class VimeoController < ApplicationController
   def index
     @user_info = Vimeo::Simple::User.info("beyonce")
     @user_name = @user_info["display_name"]
+    # this should be new.
   end
 
   def search
@@ -26,6 +27,8 @@ class VimeoController < ApplicationController
   end
 
   def show
+    @name = params['search']
+    @user_info = Vimeo::Simple::User.info("#{@name}")
   end
 
 

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'vimeo/update',             to: "vimeo#update"
   patch 'vimeo/edit',             to: "vimeo#edit"
   delete 'vimeo/destroy',         to: "vimeo#destroy"
-  get 'vimeo/show/:uid',          to: "vimeo#show"
+  get 'vimeo/show',               to: "vimeo#show",            as: :show_vimeo
 
 
   # The priority is based upon order of creation: first created -> highest priority.

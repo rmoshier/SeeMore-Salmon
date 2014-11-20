@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118184150) do
+ActiveRecord::Schema.define(version: 20141119233632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
-    t.integer  "twitter_uid"
-    t.integer  "insta_uid"
-    t.integer  "vimeo_uid"
-    t.integer  "github_uid"
+    t.integer  "twitter_uid", limit: 8
+    t.integer  "insta_uid",   limit: 8
+    t.integer  "vimeo_uid",   limit: 8
+    t.integer  "github_uid",  limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
