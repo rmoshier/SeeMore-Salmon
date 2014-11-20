@@ -1,4 +1,5 @@
-
-<div class="container">
-  <h3><%= link_to "Search for Twitter Users", new_twitter_path %></h3>
-</div>
+<% if session[:user_id] %>
+  <%= render "home/signed_in_index" %>
+<% else %>
+  <%= render "home/guest_index" %>
+<% end %>
