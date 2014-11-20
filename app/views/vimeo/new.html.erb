@@ -1,2 +1,9 @@
-<h1>Vimeo#new</h1>
-<p>Find me in app/views/vimeo/new.html.erb</p>
+<h1>Vimeo User Search</h1>
+
+<h3>Search by username</h3>
+<%= form_tag( show_vimeo_path, :method => :get ) do%>
+  <p>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search" %>
+  </p>
+<% end %>
