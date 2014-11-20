@@ -12,7 +12,9 @@
 
       ;(function(self) {
 
-        var canvas, context, wave1 = [], wave2 = [], wave3 = [], mouse = { x: innerWidth * 0.5, y: innerHeight * 0.5 }, angle = 0, mouseDown = interactive = true, FPS = 60;
+        var canvas, context, wave1 = [], wave2 = [], wave3 = [],
+        mouse = { x: innerWidth * 0.5, y: innerHeight * 0.5 }, angle = 0,
+        mouseDown = interactive = true, FPS = 60;
 
         /*
           * Init.
@@ -24,11 +26,12 @@
 
           canvas = document.createElement('canvas');
 
-              canvas.width = innerWidth;
+          canvas.width = innerWidth;
           canvas.height = innerHeight;
 
           canvas.style.position = 'absolute';
-          canvas.style.top = 0;
+          canvas.style.top = 50;
+          // canvas.style.top = 0;
           canvas.style.bottom = 0;
           canvas.style.left = 0;
           canvas.style.right = 0;
@@ -443,15 +446,28 @@
       <header>
 
         <h1>Stream</h1>
-        <h2>Sign in with one of the providers below to see all your friends in one stream</h2>
 
       </header>
 
-      <div class = 'container'>
+      <div class = 'container' id='picbox'>
+        <h2>Sign in with one of the providers below to see all your friends in one stream:</h2>
         <ul class="horizontal-nav search">
-          <li><%= link_to "sign into github", "/auth/github" %></li>
-          <li><%= link_to "sign into vimeo", "/auth/vimeo" %></li>
-          <li><%= link_to "sign into twitter", "/auth/twitter" %></li>
+            <li><a href="/auth/github"><i class="fa fa-github-square fa-3x"></i></a></li>
+            <li><a href="/auth/vimeo"><i class="fa fa-vimeo-square fa-3x"></i></a></li>
+            <li><a href="/auth/twitter"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+            <li><a href="/auth/instagram"><i class="fa fa-instagram fa-3x"></i></a></li>
+          <!-- <div class='github-link'>
+            <li><a href="/auth/github"><i class="fa fa-github-square fa-3x"></i></a></li>
+          </div>
+          <div class='vimeo-link'>
+            <li><a href="/auth/vimeo"><i class="fa fa-vimeo-square fa-3x"></i></a></li>
+          </div>
+          <div class='twitter-link'>
+            <li><a href="/auth/twitter"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+          </div>
+          <div class='instagram-link'>
+            <li><a href="/auth/instagram"><i class="fa fa-instagram fa-3x"></i></a></li>
+          </div> -->
         </ul>
       </div>
 
