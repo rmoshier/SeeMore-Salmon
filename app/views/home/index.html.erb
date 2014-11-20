@@ -1,3 +1,5 @@
-<!-- <%= link_to "sign into github", "/auth/github" %>
-<%= link_to "sign into vimeo", "/auth/vimeo" %>
-<%= link_to "sign into twitter", "/auth/twitter" %> -->
+<% if session[:user_id] %>
+  <%= render "home/signed_in_index" %>
+<% else %>
+  <%= render "home/guest_index" %>
+<% end %>
