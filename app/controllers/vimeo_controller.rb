@@ -1,6 +1,6 @@
 class VimeoController < ApplicationController
   before_action :current_user
-  
+
   def index
     @user_info = Vimeo::Simple::User.info("beyonce")
     @user_name = @user_info["display_name"]
@@ -22,6 +22,7 @@ class VimeoController < ApplicationController
     #save to database as new subscription
     @vimeo_subscription = Subscription.new(params.require(:vimeo).permit(:username, :subscription_uid))
     @vimeo_subscription.update(user_id: session[:id], provider: 'vimeo')
+    raise 
     #redirect_to root_path
   end
 
