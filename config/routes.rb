@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   post "/users/create",           to: "users#create"
   get "users/:id",                to: "users#show",            as: :user
 
+    # Sign-in / authenticated user routes
+  get    "/login",                 to: "sessions#new",        as: :login
+
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
   get "/auth/:provider/callback", to: "sessions#require_login"
+  get "/logout", to: "sessions#destroy", as: :logout
 
   # VIMEO CONTROLLER ROUTES
   get 'vimeo/index',              to: "vimeo#index",           as: :vimeo
