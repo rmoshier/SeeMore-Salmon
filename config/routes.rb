@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get 'vimeo/show',               to: "vimeo#show",     as: :show_vimeo
 
 
+  get 'instagram/index',          to: "instagram#index", as: :instagram 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
