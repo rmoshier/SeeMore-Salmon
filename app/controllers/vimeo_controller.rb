@@ -16,10 +16,12 @@ class VimeoController < ApplicationController
   end
 
   def create
+    # Gathers info from params
     @vimeo_username = params['username']
     @vimeo_uid = params['subscription_uid']
     @vimeo_display_name = params['vimeo_display_name']
-    #save to database as new subscription
+
+    # Saves to database as new subscription
     @vimeo_subscription = Subscription.new
     @vimeo_subscription.username = @vimeo_username
     @vimeo_subscription.subscribed_uid = @vimeo_uid
