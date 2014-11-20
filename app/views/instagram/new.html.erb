@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Insta User Search</h1>
+
+  <h3>Search by username</h3>
+  <%= form_tag( show_instagram_path, :method => :get ) do%>
+    <p>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Search" %>
+    </p>
+  <% end %>
+</div>
