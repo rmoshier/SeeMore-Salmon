@@ -1,19 +1,20 @@
-<h1>Vimeo Search Results</h1>
+<div class="container">
+  <h1>Vimeo Search Results</h1>
 
-<h3><%= @user_info['display_name'] %></h3>
+  <h3><%= @user_info['display_name'] %></h3>
 
-<img src="<%= @user_info['portrait_large'] %>" alt="icon" />
+  <img src="<%= @user_info['portrait_large'] %>" alt="icon" />
 
-<%= form_tag( create_vimeo_path ) do%>
+  <%= form_tag( create_vimeo_path ) do%>
+    <p>
+      <%= hidden_field_tag 'vimeo_display_name', @user_info['display_name'] %>
+      <%= hidden_field_tag 'subscription_uid', @user_info['id'] %>
+      <%= hidden_field_tag 'username', @name %>
+      <%= submit_tag "Subscribe", class: 'btn btn-default' %>
+    </p>
+  <% end %>
+
   <p>
-    <%= hidden_field_tag 'vimeo', 'vimeo'%>
-    <%= hidden_field_tag 'vimeo_display_name', @user_info['display_name'] %>
-    <%= hidden_field_tag 'subscription_uid', @user_info['id'] %>
-    <%= hidden_field_tag 'username', @name %>
-    <%= submit_tag "Subscribe" %>
+    <%= link_to "Back to Vimeo Search", new_vimeo_path %>
   </p>
-<% end %>
-
-<p>
-  <%= link_to "Back to Vimeo Search", new_vimeo_path %>
-</p>
+</div>
