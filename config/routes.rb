@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   get "users/:id",                to: "users#show",            as: :user
 
     # Sign-in / authenticated user routes
-  get    "/login",                 to: "sessions#new",        as: :login
+  get "/login",                   to: "sessions#new",          as: :login
 
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
   get "/auth/:provider/callback", to: "sessions#require_login"
-  get "/logout", to: "sessions#destroy", as: :logout
+  get "/logout",                  to: "sessions#destroy",      as: :logout
 
   # VIMEO CONTROLLER ROUTES
 
@@ -27,6 +27,14 @@ Rails.application.routes.draw do
   patch 'vimeo/edit',             to: "vimeo#edit"
   delete 'vimeo/destroy',         to: "vimeo#destroy"
   get 'vimeo/show',               to: "vimeo#show",     as: :show_vimeo
+
+  # Twitter routes
+  get '/twitter/new',             to: 'twitter#new',           as: :new_twitter
+  get '/twitter/search',          to: 'twitter#show',          as: :twitter_search
+  post '/twitter/create',         to: 'twitter#create'
+
+
+  get 'instagram/index',          to: "instagram#index", as: :instagram 
 
 
   # The priority is based upon order of creation: first created -> highest priority.
