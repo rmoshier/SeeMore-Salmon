@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
-  get "/auth/:provider/callback", to: "sessions#require_login"
+  get "/auth/:provider/callback", to: "sessions#create"
   get "/logout",                  to: "sessions#destroy",      as: :logout
 
   # Vimeo routes
