@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120003827) do
+ActiveRecord::Schema.define(version: 20141120222355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "providers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
@@ -26,10 +36,6 @@ ActiveRecord::Schema.define(version: 20141120003827) do
   end
 
   create_table "users", force: true do |t|
-    t.integer  "twitter_uid", limit: 8
-    t.integer  "insta_uid",   limit: 8
-    t.integer  "vimeo_uid",   limit: 8
-    t.integer  "github_uid",  limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end

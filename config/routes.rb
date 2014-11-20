@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
-  get "/auth/:provider/callback", to: "sessions#require_login"
-  post "/auth/:developer/callback", to: "sessions#require_login"
+
+  get "/auth/:provider/callback", to: "sessions#create"
+  post "/auth/:developer/callback", to: "sessions#create"
+
   get "/logout",                  to: "sessions#destroy",      as: :logout
 
   # Vimeo routes
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
   get '/instagram/index',          to: "instagram#index", as: :instagram
   get '/instagram/search',         to: "instagram#search", as: :instagram_search
   get '/instagram/new',            to: "instagram#new",     as: :new_instagram
-  get '/instagram/show',            to: "instagram#show",   as: :show_instagram 
+  get '/instagram/show',            to: "instagram#show",   as: :show_instagram
 
 
   # The priority is based upon order of creation: first created -> highest priority.
