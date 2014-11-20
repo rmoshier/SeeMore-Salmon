@@ -1,7 +1,43 @@
-<div = 'container'>
-  <%= link_to "logout", logout_path %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="home.js"></script>
+    <link rel="stylesheet" type="text/css" href="normalize.css" >
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <title>
+      Stream
+    </title>
+  </head>
+  <body>
+    <div = 'container'>
+      <%= link_to "logout", logout_path %>
+      <%= link_to "vimeo search", new_vimeo_path %>
+    </div>
+    <div class="container-fluid">
+      <header>
+        <div class="user-status">
+          <a href="account.html">Username</a> | Status
+        </div>
+        <h1>Stream</h1>
 
-  <%= link_to "vimeo search", new_vimeo_path %>
+        <ul class="horizontal-nav filter">
+          <li>My feed</li>
+          <li>My subscriptions</li>
+        </ul>
 
+        <ul class="horizontal-nav search">
+          <li>Follow/search</li>
+          <li>Instagram</li>
+          <li>Twitter</li>
+          <li>Vimeo</li>
+          <li>Github</li>
+        </ul>
 
-</div>
+      </header>
+
+    </div>
+  </body>
+</html>
