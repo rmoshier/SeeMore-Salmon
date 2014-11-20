@@ -1,5 +1,19 @@
-<% if session[:user_id] %>
-  <%= render "home/signed_in_index" %>
-<% else %>
-  <%= render "home/guest_index" %>
-<% end %>
+
+<div class="container">
+<header>
+  <% if session[:user_id] %>
+    <%= render "layouts/signedin" %>
+  <% else %>
+    <%= render "layouts/guest" %>
+  <% end %>
+</header>
+
+<body>
+  <% if session[:user_id] %>
+    <%= render "home/signed_in_index" %>
+  <% else %>
+    <%= render "home/guest_index" %>
+  <% end %>
+</body>
+
+</div>
