@@ -4,8 +4,12 @@ class TwitterController < ApplicationController
   end
 
   def show
+    # Twitter::REST
+
   end
 
   def create
   end
 end
+
+# client.get_all_tweets("sferik")

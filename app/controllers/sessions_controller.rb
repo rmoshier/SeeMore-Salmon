@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  # User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+  # http://railscasts.com/episodes/241-simple-omniauth
   def require_login
     auth_hash = request.env['omniauth.auth']
     @uid = auth_hash["uid"]
