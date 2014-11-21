@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
-
+    
   end
 
   def filter_video_response(raw_video_object)
@@ -27,6 +27,7 @@ class HomeController < ApplicationController
     filtered_video_object[:title] = raw_video_object["title"]
     filtered_video_object[:url] = raw_video_object["url"]
     filtered_video_object[:thumbnail] = raw_video_object["thumbnail_medium"]
+    filtered_video_object[:username] = raw_video_object["user_name"]
     return filtered_video_object
   end
 
