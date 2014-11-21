@@ -1,3 +1,9 @@
-for user in client.user_search("instagram")
-    <li> <img src='#{user.profile_picture}'>
-      <%= user.username %> 
+<% @results.each do |r| %>
+
+
+      <%= image_tag "instagram.png" %>
+
+      <%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}", target: "_blank" %>
+      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+
+<% end %>

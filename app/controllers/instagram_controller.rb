@@ -8,19 +8,22 @@ class InstagramController < ApplicationController
 
   def new
     find_provider
-    create_instagram_client
+    @results = Instagram.client.user_search(params[:instagram])
+    raise
   end
 
 
   def show
     find_provider
-    @search_results = create_instagram_client.user_search(params[:username])
+    @results = create_instagram_client.user_search(params[:username])
 
   end
 
   def search
-    find_provider
-    @search_results = create_instagram_client.user_search(params[:username])
+    raise
+    @results = Instagram.client.user_search(params[:instagram])
+
+
   end
 
   def create
