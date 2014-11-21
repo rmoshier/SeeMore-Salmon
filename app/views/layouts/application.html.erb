@@ -13,6 +13,10 @@
   <% if flash[:notice] %>
     <%= render "layouts/notice" %>
   <% end %>
+
+  <% if flash[:login] %>
+    <%= render "layouts/login" %>
+  <% end %> 
 </header>
 
 <%= yield %>
