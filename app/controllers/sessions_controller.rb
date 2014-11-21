@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
                       )
       session[:user_id] = find_provider.user_id
     end
+    flash[:login] = true
     redirect_to root_path
   end
 
