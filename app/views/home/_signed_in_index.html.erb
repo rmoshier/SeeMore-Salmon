@@ -6,8 +6,10 @@
     <ul>
     <% @filtered_videos.each do | video | %>
       <li>
-        <h4><%= video[:title] %></h4>
+        <h3><%= video[:username] %></h3>
         <a href="<%= video[:url] %>"> <img src="<%= video[:thumbnail] %>" alt="icon" /></a>
+        <h4><%= video[:title] %></h4>
+
       </li>
     <% end %>
     </ul>
