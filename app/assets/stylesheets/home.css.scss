@@ -15,6 +15,10 @@ h1 {
   color: rgb(50, 209, 202);
 }
 
+h4 {
+  color: rgb(50, 209, 202);
+}
+
 h2 {
   font-size: 15px;
   text-align: center;
@@ -26,20 +30,30 @@ h2 {
 }
 
 .horizontal-nav a:hover {
-  color: rgb(107, 224, 157);
-  text-decoration: none;
+  color: #ffa07a;
 }
 
-canvas {
-  height: 1000px;
-}
+// .fa-github-square:hover {
+//   color: rgb(50, 209, 202);
+// }
+//
+// .fa-vimeo-square:hover {
+//   color: rgb(107, 224, 157);
+// }
+//
+// .fa-twitter-square:hover {
+//   color: rgb(252, 189, 104);
+// }
+//
+// .fa-instagram:hover {
+//   color: rgb(50, 225, 242);
+// }
+
+
 
 /****************/
 /*Header Styling*/
 /****************/
-header {
-  // background-color: lightblue;
-}
 
 .user-status {
   position: absolute;
