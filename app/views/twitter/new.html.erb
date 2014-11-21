@@ -1,3 +1,9 @@
-<%= form_tag twitter_search_path do %>
-  <%= label_tag   %>
-  <%= text_field_tag [] %>
+<!-- Need to replace <br> with layout formatting -->
+<br>
+<div class="container">
+  <%= form_tag(twitter_search_path, method: "get") do %>
+    <%= label_tag(:username, "User Name")   %>
+    <%= text_field_tag(:username) %>
+    <%= submit_tag("Go") %>
+  <% end %>
+</div>
