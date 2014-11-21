@@ -16,7 +16,14 @@
 
   <% if flash[:login] %>
     <%= render "layouts/login" %>
-  <% end %> 
+  <% end %>
+
+
+  <% if session[:user_id] %>
+    <%= render "layouts/signedin" %>
+  <% else %>
+    <%= render "layouts/guest" %>
+  <% end %>
 </header>
 
 <%= yield %>
