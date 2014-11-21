@@ -5,3 +5,7 @@
         overflow: hidden;
 
       }
+
+canvas {
+  height: 1000px;
+}
