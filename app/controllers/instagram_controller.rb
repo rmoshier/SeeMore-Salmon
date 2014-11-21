@@ -7,9 +7,7 @@ require "instagram"
 # All methods require authentication (either by client ID or access token).
 # To get your Instagram OAuth credentials, register an app at http://instagr.am/oauth/client/register/
 Instagram.configure do |config|
-  config.client_id = '9001143e9274470b8e6778e59d1d5c48'
-  config.client_secret = 'a15c4fb55b0d4e6cbb3ec92d8ced8698'
-  config.access_token = '7351433.9001143.1cfa1623eb5f4388828007c832ce25f9'
+  # stuff goes here
 end
 
 CALLBACK_URL = "http://localhost:3000/auth/instagram/callback"
