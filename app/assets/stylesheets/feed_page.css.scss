@@ -1,7 +1,40 @@
+
+// General styling for list elements on feed page.
 .feed ul {
   padding-left: 0px;
 }
 
 .feed ul li {
   list-style: none;
+}
+
+.feed a:hover {
+  text-decoration: none;
+}
+
+.search-users {
+  padding-left: 0;
+}
+
+.search-users li {
+  display: inline-block;
+  list-style: none;
+  padding-right: 15px;
+}
+
+.fa {
+  padding-right: 5px;
+}
+
+.feed h3{
+  color: #428bca;
+}
+
+@media (max-width: 800px) {
+  .search_users {
+    display: block;
+  }
+  .search_users li {
+    display: block;
+  }
 }

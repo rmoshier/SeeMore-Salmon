@@ -1,15 +1,22 @@
 <div class="container">
-  <h3><%= link_to "Search for Twitter Users", new_twitter_path %></h3>
-  <h3><%= link_to "Search for Vimeo Users", new_vimeo_path %></h3>
+
+  <ul class="search-users">
+    <li><h4>Search For: </h4></li>
+    <li><h4><i class="fa fa-twitter-square"></i><%= link_to "Twitter Users", new_twitter_path %></h4></li>
+    <li><h4><i class="fa fa-vimeo-square"></i><%= link_to "Vimeo Users", new_vimeo_path %></h4></li>
+    <li><h4><i class="fa fa-instagram"></i><%= link_to "Instagram Users", "#" %></h4></li>
+    <li><h4><i class="fa fa-github-square"></i><%= link_to "Github Users", "#" %></h4></li>
+  </ul>
 
   <div class="feed">
     <ul>
     <% @filtered_videos.each do | video | %>
       <li>
         <h3><%= video[:username] %></h3>
-        <a href="<%= video[:url] %>"> <img src="<%= video[:thumbnail] %>" alt="icon" /></a>
-        <h4><%= video[:title] %></h4>
-
+        <a href="<%= video[:url] %>">
+          <img src="<%= video[:thumbnail] %>" alt="icon" />
+          <h4><%= video[:title] %></h4>
+        </a>
       </li>
     <% end %>
     </ul>
