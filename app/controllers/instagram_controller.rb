@@ -27,9 +27,13 @@ class InstagramController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @results }
+    @client = Instagram.client(:access_token => session[:access_token])
     end
   end
 
+  def show
+    @client = Instagram.client(:access_token => session[:access_token])
+  end
   # Get current authenticated users info
   def user
     respond_to do |format|
