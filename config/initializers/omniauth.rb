@@ -6,5 +6,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer
 
 
-  Beemo.configuration[:access_token] = ENV["VIMEO_CLIENT_SECRET"]
 end

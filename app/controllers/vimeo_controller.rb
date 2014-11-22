@@ -2,7 +2,7 @@ class VimeoController < ApplicationController
   before_action :current_user
 
   def index
-    # @treehouse = Beemo::User.search("treehouse") # => A list of users
+    @treehouse = Beemo::User.search("treehouse") # => A list of users
     # raise
   end
 
