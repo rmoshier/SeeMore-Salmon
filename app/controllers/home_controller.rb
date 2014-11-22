@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
     # Gather all subscriptions for user
@@ -11,7 +12,6 @@ class HomeController < ApplicationController
     @vimeo_vids = vimeo_usernames.collect {|user| Vimeo::Simple::User.videos(user)}
 
     ###### THE ACTUAL CODE ######
-
     @filtered_videos = @vimeo_vids.collect do |httparty|
       httparty.collect do |video_object|
         filter_video_response(video_object)
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
-    
+
   end
 
   def filter_video_response(raw_video_object)

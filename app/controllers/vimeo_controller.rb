@@ -2,9 +2,8 @@ class VimeoController < ApplicationController
   before_action :current_user
 
   def index
-    @user_info = Vimeo::Simple::User.info("beyonce")
-    @user_name = @user_info["display_name"]
-    # this should be new.
+    # @treehouse = Beemo::User.search("treehouse") # => A list of users
+    # raise
   end
 
   def search
