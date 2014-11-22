@@ -1,11 +1,9 @@
-<div class="container">
-  <h1>Insta Search Results</h1>
-client = Instagram.client(:access_token => session[:access_token])
-  html = "<h1>Search for users on instagram, by name or usernames</h1>"
-  for user in client.user_search("instagram")
-
-    <%=  <img src='#{user.profile_picture}'>  %>
+<% @results.each do |r| %>
 
 
-  <%= end %>
-</div>
+      <%= image_tag "instagram.png" %>
+
+      <%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}", target: "_blank" %>
+      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+
+<% end %>
