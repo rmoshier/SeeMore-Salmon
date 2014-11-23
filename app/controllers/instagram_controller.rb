@@ -1,5 +1,5 @@
 class InstagramController < ApplicationController
-  
+
   def index
     # client = Instagram.client(:access_token => session[:access_token])
   end
@@ -42,8 +42,8 @@ class InstagramController < ApplicationController
 
   def create_instagram_client
     Instagram.configure do |config|
-      config.client_id = "9001143e9274470b8e6778e59d1d5c48"
-      config.client_secret = "c713fc1de0ba48d8a788993c4fee103c"
+      config.client_id =
+      config.client_secret = 
       # config.access_token_secret = @provider.secret
     end
   end
