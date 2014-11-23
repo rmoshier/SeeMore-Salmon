@@ -23,7 +23,7 @@ class InstagramController < ApplicationController
     find_provider
     @srch = params[:q]
     @results = Instagram.client.user_search(@srch)
-    render :instagram_results
+    # render :instagram_results
 
 
   end
