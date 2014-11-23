@@ -5,32 +5,19 @@ class InstagramController < ApplicationController
 
 
   def index
-    client = Instagram.client(:access_token => session[:access_token])
+    # client = Instagram.client(:access_token => session[:access_token])
   end
 
   def new
     create_instagram_client
     find_provider
-    client = Instagram.client(:access_token => session[:access_token])
-
   end
 
 
   def show
-    create_instagram_client
-    find_provider
-
-    @subscription = Subscription.new
-    srch = params[:search]
-    @results = client.user_search(params[:search], { count: 10 })
-
-
   end
 
   def search
-    # create_instagram_client
-    # find_provider
-    # client = Instagram.client(:access_token => session[:access_token])
     client = Instagram.client(:access_token => session[:access_token])
     create_instagram_client
     find_provider
