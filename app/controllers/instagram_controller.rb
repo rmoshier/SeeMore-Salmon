@@ -42,8 +42,8 @@ class InstagramController < ApplicationController
 
   def create_instagram_client
     Instagram.configure do |config|
-      config.client_id =
-      config.client_secret = 
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
       # config.access_token_secret = @provider.secret
     end
   end
