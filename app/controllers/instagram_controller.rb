@@ -21,8 +21,8 @@ class InstagramController < ApplicationController
     client = Instagram.client(:access_token => session[:access_token])
     create_instagram_client
     find_provider
-    @results = Instagram.client.user_search("callapat")
-    srch = params[:q]
+    @srch = params[:q]
+    @results = Instagram.client.user_search(@srch)
     render :instagram_results
 
 
