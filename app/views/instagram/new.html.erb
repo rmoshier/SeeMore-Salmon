@@ -5,8 +5,11 @@
 
 <div class="container">
   <%= form_tag(instagram_search_path, method: "get") do %>
-    <%= label_tag(:username, "User Name")   %>
-    <%= text_field_tag(:username) %>
-    <%= submit_tag("Go") %>
+    <p>
+
+      <%= text_field_tag :q, params[:q], :placeholder => "Search for user" %>
+      <%= submit_tag "Go", class: 'btn btn-default' %>
+
+    </p>
   <% end %>
 </div>
