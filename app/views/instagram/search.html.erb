@@ -1,19 +1,11 @@
 <div class="container">
-  <h1>Insta User Search</h1>
+  <h1>Instagram Search Results</h1>
 
 
 
-<div class="container">
-  <%= form_tag(instagram_search_path, method: "get") do %>
-    <p>
-      <%= text_field_tag :search %>
-      <%= submit_tag "Go", class: 'btn btn-default' %>
-    </p>
-  <% end %>
-</div>
+<% @results.each do |r| %>
 
+      <%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
+      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
 
-<%= form_tag instagram_search_path do %>
-  <%= text_field_tag :search, params[:q], :placeholder => "Search for user" %>
-  <%= submit_tag "Search" %>
 <% end %>
