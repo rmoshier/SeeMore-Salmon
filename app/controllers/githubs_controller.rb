@@ -3,7 +3,7 @@ class GithubsController < ApplicationController
   def new
     find_provider
     create_github_client
-    raise
+    # raise
   end
 
   private
@@ -15,5 +15,5 @@ class GithubsController < ApplicationController
   def create_github_client
     @client = Octokit::Client.new(:access_token => find_provider.token)
   end
-  
+
 end

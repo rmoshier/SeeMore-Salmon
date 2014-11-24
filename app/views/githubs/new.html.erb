@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Github User Search</h1>
+
+
+
+<div class="container">
+  <%= form_tag(githubs_search_path, method: "get") do %>
+    <p>
+
+      <%= text_field_tag :q, params[:q], :placeholder => "Search for user" %>
+      <%= submit_tag "Go", class: 'btn btn-default' %>
+
+    </p>
+  <% end %>
+</div>
