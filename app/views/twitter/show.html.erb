@@ -1,3 +1,4 @@
+<%= raise %>
 <div class="container">
   <h3>Search Results</h3>
     <% @search_results.each do |result|  %>
@@ -12,7 +13,9 @@
               <%= result.name %>
             </strong>
             <div>
-              <%= link_to "@#{result.handle}", twitter_create_path, method: :post %>
+              <!-- This should really route to the subscription controller, no? -->
+               <!-- Need a new subscriptions model -->
+              <%= link_to "@#{result.handle}", subscription_create_path(@provider.user_id), class: "twitter subscribe-link" %>
             </div>
           </dd>
         </dl>

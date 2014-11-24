@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def create
     @uid = request.env["omniauth.auth"]["uid"]
     @provider_name = request.env["omniauth.auth"]["provider"]
+    
     if find_provider
       session[:user_id] = find_provider.user_id
     else
