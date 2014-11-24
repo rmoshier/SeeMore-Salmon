@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe TwitterController, :type => controller do
+RSpec.describe TwitterController, :type => :controller do
+
+  # need to create helper that authenticates user before these tests are run
 
   describe "GET new" do
     it "renders the :new template" do
@@ -14,5 +17,5 @@ RSpec.describe TwitterController, :type => controller do
       get :show
       expect(response).to render_template(:show)
     end
-  end  
+  end
 end
