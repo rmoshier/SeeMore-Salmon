@@ -7,7 +7,6 @@ class VimeoController < ApplicationController
 
   def search
     @name = params['search']
-    #@users_info = Beemo::User.search("#{@name}")
   end
 
   def new
@@ -20,12 +19,12 @@ class VimeoController < ApplicationController
     @vimeo_display_name = params['vimeo_display_name']
 
     # Saves to database as new subscription
-    @vimeo_subscription = Feed.new
-    @vimeo_subscription.username = @vimeo_username
-    @vimeo_subscription.uid = @vimeo_uid
-    @vimeo_subscription.user_id = session[:user_id]
-    @vimeo_subscription.provider = "vimeo"
-    if @vimeo_subscription.save
+    @vimeo_feed = Feed.new
+    @vimeo_feed.username = @vimeo_username
+    @vimeo_feed.uid = @vimeo_uid
+    @vimeo_feed.user_id = session[:user_id]
+    @vimeo_feed.provider = "vimeo"
+    if @vimeo_feed.save
       redirect_to root_path
     else
       render :new
@@ -44,14 +43,6 @@ class VimeoController < ApplicationController
   def show
     @name = params['search']
     @users_info = Beemo::User.search("#{@name}")
-    raise
-
-    # @users_info.first.profile_pics["sizes"][1]["link"]
-
-    # implement advanced Vimeo API.
-    # pull out UID's and search on that?
-
-
   end
 
 
