@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   post '/instagram/new',           to: "instagram#create"
   get '/instagram/show',            to: "instagram#show",   as: :show_instagram
 
+  #Github routes
+  get '/githubs/new',             to: 'githubs#new',           as: :new_github
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

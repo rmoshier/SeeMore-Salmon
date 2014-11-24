@@ -3,6 +3,7 @@ class GithubsController < ApplicationController
   def new
     find_provider
     create_github_client
+    raise
   end
 
   private
@@ -17,9 +18,8 @@ class GithubsController < ApplicationController
       config.client_id = ENV["GITHUB_CLIENT_ID"]
       config.client_secret = ENV["GITHUB_CLIENT_SECRET"]
     end
-
     # Fetch the current user
-    Octokit.user
+    # Octokit.user
 
   end
 end
