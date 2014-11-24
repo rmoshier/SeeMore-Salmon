@@ -13,13 +13,7 @@ class GithubsController < ApplicationController
   end
 
   def create_github_client
-    # Provide authentication credentials
-    Octokit.configure do |config|
-      config.client_id = ENV["GITHUB_CLIENT_ID"]
-      config.client_secret = ENV["GITHUB_CLIENT_SECRET"]
-    end
-    # Fetch the current user
-    # Octokit.user
-
+    @client = Octokit::Client.new(:access_token => find_provider.token)
   end
+  
 end
