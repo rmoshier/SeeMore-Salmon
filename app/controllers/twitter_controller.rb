@@ -9,7 +9,6 @@ class TwitterController < ApplicationController
   def show
     find_provider
     @search_results = create_twitter_client.user_search(params[:username])
-
   end
 
   def create
