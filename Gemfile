@@ -61,4 +61,5 @@ gem "omniauth-instagram"
 
 gem "twitter"
 gem "vimeo"
+gem "beemo"
 gem 'instagram',  :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
