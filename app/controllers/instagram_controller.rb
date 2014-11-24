@@ -1,54 +1,51 @@
-require 'rubygems'
-require 'bundler/setup'
-require "instagram"
-
-
-
-# All methods require authentication (either by client ID or access token).
-# To get your Instagram OAuth credentials, register an app at http://instagr.am/oauth/client/register/
-Instagram.configure do |config|
-  # stuff goes here
-end
-
-CALLBACK_URL = "http://localhost:3000/auth/instagram/callback"
-
 class InstagramController < ApplicationController
 
-  #check for token
   def index
-
+    # client = Instagram.client(:access_token => session[:access_token])
   end
 
-  # Search for Instagram user
+  def new
+    create_instagram_client
+    find_provider
+  end
+
+
+  def show
+  end
+
   def search
-    @results = Instagram.user_search(params[:query])
-    respond_to do |format|
-      format.html
-      format.json { render :json => @results }
+    # client = Instagram.client(:access_token => session[:access_token])
+    create_instagram_client
+    find_provider
+    @srch = params[:q]
+    @results = Instagram.client.user_search(@srch)
+    # render :instagram_results
+  end
+
+
+  def create
+  #   @instagram_username = params['username']
+  #   find_provider
+  #   @user = User.find(session[:user_id])
+  #   @provider = params[:provider]
+  #   @name = params['search']
+  #   client = Instagram.client(:access_token => session[:access_token])
+  #   @search_results = create_instagram_client.user_search(params[:name])
+  #   @results = client.user_search(params[:username], { count: 10 })
+  end
+
+  private
+
+  def find_provider
+    @provider = Provider.find_by_user_id(session[:user_id])
+  end
+
+  def create_instagram_client
+    Instagram.configure do |config|
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
+      # config.access_token_secret = @provider.secret
     end
   end
-
-  # Get current authenticated users info
-  def user
-    respond_to do |format|
-      format.html
-      format.json { render :json => @results }
-    end
-  end
-
-  # Connect to Instagram for authorization, handled in js code
-  def authorize
-    #redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
-  end
-
-  # Callback handler for Instagram authorization, handled in js code
-  def callback
-    #@code = params[:code];
-    #response = Instagram.get_access_token(@code, :redirect_uri => CALLBACK_URL)
-    #session[:access_token] = @code
-    #redirect_to :controller => 'instagram', :action => 'index'
-  end
-
-  # Instagram page for handling api calls
 
 end
