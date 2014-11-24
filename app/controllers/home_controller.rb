@@ -3,13 +3,13 @@ class HomeController < ApplicationController
 
   def index
     # Gather all subscriptions for user
-    subscriptions = Feed.where(user_id: session[:user_id])
+    feeds = Feed.where(user_id: session[:user_id])
     # Get vimeo subscriptions from all subscriptions
-    vimeo_subscriptions = subscriptions.select {|sub| sub.provider == "vimeo"}
+    vimeo_feeds = feeds.select {|feed| feed.provider == "vimeo"}
     # Get vimeo usernames for searching api
-    vimeo_usernames = vimeo_subscriptions.collect {|sub| sub.username}
+    vimeo_usernames = vimeo_feeds.collect {|feed| feed.username}
     # Searching vimeo api with vimeo usernames, returns parsed vimeo json obejct
-    @vimeo_vids = vimeo_usernames.collect {|user| Vimeo::Simple::User.videos(user)}
+    @vimeo_vids = vimeo_usernames.collect {|user_name| Vimeo::Simple::User.videos(user_name)}
 
     ###### THE ACTUAL CODE ######
     @filtered_videos = @vimeo_vids.collect do |httparty|
