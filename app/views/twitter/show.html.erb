@@ -12,7 +12,7 @@
               <%= result.name %>
             </strong>
             <div>
-              <%= link_to "@#{result.handle}", twitter_create_path, method: :post %>
+              <%= link_to "@#{result.handle}", subscription_create_path(@provider.user_id) , method: :post %>
             </div>
           </dd>
         </dl>
