@@ -1,12 +1,12 @@
 class TwitterController < ApplicationController
+  before_action :current_user
 
   def new
     find_provider
     create_twitter_client
   end
 
-  # secure?
-  # put this in a separate controller?
+  # secure? put this in a separate controller?
   def show
     find_provider
     @search_results = create_twitter_client.user_search(params[:username])
@@ -15,7 +15,6 @@ class TwitterController < ApplicationController
 
   def create
     find_provider
-    raise
   end
 
   private
