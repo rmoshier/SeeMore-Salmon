@@ -1,34 +1,37 @@
 class InstagramController < ApplicationController
 
-  def create_instagram_client
-  @Instagram.configure do |config|
-    config.client_id = "INSTAGRAM_CLIENT_ID"
-    config.client_secret = "INSTAGRAM_API_SECRET"
+  def index
+    # client = Instagram.client(:access_token => session[:access_token])
   end
 
   def new
+    create_instagram_client
     find_provider
-    @results = Instagram.client.user_search(params[:instagram])
-    raise
   end
 
 
   def show
-    find_provider
-    @results = Instagram.client.user_search(params[:username])
-
   end
 
   def search
-    raise
-    @results = Instagram.client.user_search(params[:instagram])
-
-
+    # client = Instagram.client(:access_token => session[:access_token])
+    create_instagram_client
+    find_provider
+    @srch = params[:q]
+    @results = Instagram.client.user_search(@srch)
+    # render :instagram_results
   end
 
+
   def create
-    find_provider
-    raise
+  #   @instagram_username = params['username']
+  #   find_provider
+  #   @user = User.find(session[:user_id])
+  #   @provider = params[:provider]
+  #   @name = params['search']
+  #   client = Instagram.client(:access_token => session[:access_token])
+  #   @search_results = create_instagram_client.user_search(params[:name])
+  #   @results = client.user_search(params[:username], { count: 10 })
   end
 
   private
@@ -37,6 +40,12 @@ class InstagramController < ApplicationController
     @provider = Provider.find_by_user_id(session[:user_id])
   end
 
-
+  def create_instagram_client
+    Instagram.configure do |config|
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
+      # config.access_token_secret = @provider.secret
+    end
   end
+
 end

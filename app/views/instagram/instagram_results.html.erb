@@ -1,0 +1,5 @@
+<% @results.each do |r| %>
+      <%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}", target: "_blank" %>
+      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+
+<% end %>

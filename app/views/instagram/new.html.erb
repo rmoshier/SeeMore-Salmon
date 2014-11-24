@@ -1,12 +1,15 @@
 <div class="container">
-  <h1>Insta User Search</h1>
+  <h1>Instagram User Search</h1>
 
 
 
 <div class="container">
   <%= form_tag(instagram_search_path, method: "get") do %>
-    <%= label_tag(:username, "User Name")   %>
-    <%= text_field_tag(:username) %>
-    <%= submit_tag("Go") %>
+    <p>
+
+      <%= text_field_tag :q, params[:q], :placeholder => "Search for user" %>
+      <%= submit_tag "Go", class: 'btn btn-default' %>
+
+    </p>
   <% end %>
 </div>
