@@ -22,7 +22,7 @@ class VimeoController < ApplicationController
     # Saves to database as new subscription
     @vimeo_subscription = Feed.new
     @vimeo_subscription.username = @vimeo_username
-    @vimeo_subscription.subscribed_uid = @vimeo_uid
+    @vimeo_subscription.uid = @vimeo_uid
     @vimeo_subscription.user_id = session[:user_id]
     @vimeo_subscription.provider = "vimeo"
     if @vimeo_subscription.save

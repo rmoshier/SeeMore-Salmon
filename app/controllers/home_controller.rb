@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     # Gather all subscriptions for user
-    subscriptions = Subscription.where(user_id: session[:user_id])
+    subscriptions = Feed.where(user_id: session[:user_id])
     # Get vimeo subscriptions from all subscriptions
     vimeo_subscriptions = subscriptions.select {|sub| sub.provider == "vimeo"}
     # Get vimeo usernames for searching api
