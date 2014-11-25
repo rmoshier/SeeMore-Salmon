@@ -1,0 +1,24 @@
+
+<div class="container">
+  <h3>Github Search Results</h3>
+    <% @search_results.each do |result|  %>
+      <ul class="list-unstyled">
+        <dl class="dl-horizontal">
+          <dt>
+            <!-- use link_to? -->
+            <img class="twitter-icon" src="<%= result.profile_image_uri %>">
+          </dt>
+          <dd>
+            <strong>
+              <%= result.name %>
+            </strong>
+            <div>
+              <!-- This should really route to the subscription controller, no? -->
+               <!-- Need a new subscriptions model -->
+              <%= link_to "@#{result.handle}", subscription_create_path(@provider.user_id), class: "twitter subscribe-link" %>
+            </div>
+          </dd>
+        </dl>
+      </ul>
+    <% end %>
+</div>
