@@ -20,7 +20,9 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
+
     #raise
+
   end
 
   def filter_video_response(raw_video_object)
