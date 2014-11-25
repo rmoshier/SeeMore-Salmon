@@ -25,16 +25,15 @@ class InstagramController < ApplicationController
 
   def create
     find_provider
-    @instagram_username = params['username']
-    @instagram_uid = params['subscription_uid']
-    @instagram_name = params['instagram_display_name']
+    
+    @feed = Feed.find_by_uid(params[:feed_uid])
 
-    # Saves to database as new subscription
-    @instagram_feed = Feed.new
-    @instagram_feed.username = @instagram_username
-    @instagram_feed.uid = @instagram_uid
-    @instagram_feed.user_id = session[:user_id]
-    @instagram_feed.provider = "instagram"
+    if @feed
+      current_user.subscriptions.create(feed_id: @feed.id)
+    else
+      current_user.feeds.create(provider: params["controller"],
+                                uid: params[:feed_uid]) # missing username
+    end
   end
 
   private

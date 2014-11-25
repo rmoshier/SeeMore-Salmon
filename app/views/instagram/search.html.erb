@@ -1,17 +1,3 @@
-<script>
-
-
-
-$(function () { $(".choose").click(function (e) {
-  e.preventDefault();
-  var div = $(this).parents(".club");
-  var url = $(this).parents("form").attr("action");
-  $.ajax(url, {
-  type: "POST",
-  success: function (data) {
-    div.addClass("chosen") } }); }); });
-
-</script>
 
 
 
@@ -24,10 +10,12 @@ $(function () { $(".choose").click(function (e) {
 <p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
 <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
 <%= r.full_name %>
+
     </p>
     <div class=' col-lg-1 actions'>
-      <%= button_to "Choose", "/instagram/new", class: "choose btn btn-success"  %>
-      <%= input type="hidden", name="UID", value= r.uid %>
+      <%= button_to "Go", "/instagram/new", class: 'choose btn btn-default' %>
+      <%= hidden_field_tag "[provider_uid]", r.id, class: "info" %>
+
     </div>
   </div>
 <% end %>
