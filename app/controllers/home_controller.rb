@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     # Searching vimeo api with vimeo uids, returns parsed vimeo json obejct
     @vimeo_vids = vimeo_uids.collect {|uid|   HTTParty.get("http://vimeo.com/api/v2/" + uid + "/videos.json")}
 
-    ###### THE ACTUAL CODE ######
+    ###### Getting info out of nested data structure ######
     @filtered_videos = @vimeo_vids.collect do |httparty|
       httparty.collect do |video_object|
         filter_video_response(video_object)
@@ -20,9 +20,7 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
-
     #raise
-
   end
 
   def filter_video_response(raw_video_object)
