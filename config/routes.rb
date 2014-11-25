@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # Twitter routes
   get '/twitter/new',               to: 'twitter#new',          as: :new_twitter
   get '/twitter/search',            to: 'twitter#show',         as: :twitter_search
-  post '/twitter/create',           to: 'twitter#create'
+  post '/twitter/:feed_uid',        to: 'twitter#create',       as: :twitter
 
   #Instagram routes
   get '/instagram/index',           to: "instagram#index",      as: :instagram
