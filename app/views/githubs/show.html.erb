@@ -1,8 +1,19 @@
 <%#= raise %>
 <div class="container">
   <h3>Github Search Results</h3>
-    <% @search_results[:items].each do |f| %>
-    <%= f[:login] %>
-    <img class="github-icon" src="<%= f[:avatar_url] %>">
+    <% @search_results[:items].each do |results| %>
+    <ul class="list-unstyled">
+      <dl class="dl-horizontal">
+          <img class="github-icon" src="<%= results[:avatar_url] %>">
+        <dd>
+          <strong>
+            <%= results[:login] %>
+          </strong>
+          <div>
+            <%= link_to results[:login] %>
+          </div>
+        </dd>
+      </dl>
+    </ul>
     <% end %>
 </div>
