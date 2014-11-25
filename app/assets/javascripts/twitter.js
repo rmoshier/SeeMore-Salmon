@@ -3,10 +3,18 @@
 
 $(function() {
   $( "a.twitter.subscribe-link" ).click(function( event ) {
+
     event.preventDefault();
-    $( this ).addClass( "subscribed" ); 
+
     var twitterHandle = $( this ).innerHTML;
-    // var twitterHandle = $( this )[0].innerHTML;
-    // $( this )[0].data( subscriptionName, twitterHandle );
+    var url = $( this ).href;
+
+    $.ajax( url, {
+      type: "POST",
+      success: function (data) {
+        // div.addClass("chosen")
+      console.log(data);
+      }
+    });
   });
 });
