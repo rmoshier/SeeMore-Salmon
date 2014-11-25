@@ -2,9 +2,7 @@ class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
       t.integer :user_id
-      t.string :provider
-      t.string :username
-      t.integer :subscribed_uid
+      t.integer :feed_id
 
       t.timestamps
     end
