@@ -64,3 +64,8 @@ gem "vimeo"
 gem "octokit", "~> 3.0"
 gem "beemo"
 gem 'instagram',  :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
+
+gem 'will_paginate', '~> 3.0.5'
+
+
+gem 'bootstrap-will_paginate', '~> 0.0.10'

@@ -51,6 +51,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     buftok (0.2.0)
     builder (3.2.2)
     coderay (1.1.0)
@@ -257,6 +259,7 @@ GEM
       json (>= 1.1.9)
       multipart-post (>= 1.0.1)
       oauth (>= 0.4.3)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -266,6 +269,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (= 3.2.0.2)
+  bootstrap-will_paginate (~> 0.0.10)
   coffee-rails (~> 4.0.0)
   dotenv-rails
   factory_girl_rails
@@ -292,3 +296,4 @@ DEPENDENCIES
   twitter
   uglifier (>= 1.3.0)
   vimeo
+  will_paginate (~> 3.0.5)
