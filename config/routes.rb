@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   #Github routes
   get '/githubs/new',               to: 'githubs#new',      as: :new_github
   get '/githubs/search',            to: 'githubs#show',     as: :githubs_search
-  post '/githubs/create',           to: 'githubs#create'
+  post '/githubs/:feed_uid',           to: 'githubs#create'
 
   # Subscription routes
   post 'subscriptions/:feed_uid',    to: 'subscriptions#create', as: :subscription
