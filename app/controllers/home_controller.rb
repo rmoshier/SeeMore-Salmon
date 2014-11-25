@@ -19,6 +19,7 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
+    
 
   end
 
