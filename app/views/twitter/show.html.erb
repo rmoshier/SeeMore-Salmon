@@ -1,4 +1,3 @@
-<%= raise %>
 <div class="container">
   <h3>Search Results</h3>
     <% @search_results.each do |result|  %>
@@ -13,22 +12,10 @@
               <%= result.name %>
             </strong>
             <div>
-              <!-- This should really route to the subscription controller, no? -->
-               <!-- Need a new subscriptions model -->
-              <%= link_to "@#{result.handle}", subscription_create_path(@provider.user_id), class: "twitter subscribe-link" %>
+              <%= link_to "@#{result.handle}", twitter_path(result.id), class: "twitter subscribe-link", method: :post %>
             </div>
           </dd>
         </dl>
       </ul>
-
-      <!-- Can I make the "link to" above the submit tag? -->
-      <!-- Should this be a form_for(@subscription)? -->
-      <!-- Is there a way to do this with jQuery's .data()? -->
-      <!-- <%= form_tag twitter_create_path do %>
-        <%= hidden_field_tag "provider", "twitter" %>
-        <%= hidden_field_tag "uid", result.id %>
-        <%= hidden_field_tag "username", result.handle %>
-        <%= submit_tag "Follow" %>
-      <% end %> -->
     <% end %>
 </div>

@@ -1,6 +1,8 @@
 class TwitterController < ApplicationController
   before_action :current_user
 
+  # will this break is someone logs in using a non-Twitter provider?
+
   def new
     find_provider
     create_twitter_client
@@ -12,7 +14,16 @@ class TwitterController < ApplicationController
   end
 
   def create
-    find_provider
+    @feed = Feed.find_by_uid(params[:feed_uid])
+
+    if @feed
+      current_user.subscriptions.create(feed_id: @feed.id)
+    else
+      current_user.feeds.create(provider: params["controller"],
+                                uid: params[:feed_uid]) # missing username
+    end
+    # here or elsewhere...need to create posts
+    redirect_to root_path
   end
 
   # Should these methods just be in a model instead?

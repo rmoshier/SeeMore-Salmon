@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
   has_many :providers
-  has_and_belongs_to_many :feeds
+  has_many :subscriptions
+  has_many :feeds, through: :subscriptions
 end
