@@ -5,7 +5,8 @@
 
 <% @results.each do |r| %>
 
-      <%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
+      <p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
       <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+      <%= submit_tag "Subscribe", class: 'btn btn-default' %></p>
 
 <% end %>

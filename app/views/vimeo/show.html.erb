@@ -1,18 +1,29 @@
 <div class="container">
   <h1>Vimeo Search Results</h1>
 
-  <h3><%= @user_info['display_name'] %></h3>
+  <% @users_info.each do |user| %>
+    <!-- This is the user's display name -->
+    <h3><%= user.name %></h3>
 
-  <img src="<%= @user_info['portrait_large'] %>" alt="icon" />
+    <!-- Profile pic conditional display -->
+    <% if user.profile_pics != nil %>
+      <img src="<%= user.profile_pics["sizes"][1]["link"] %>" alt="<%= user.name %> icon" />
+    <% end %>
 
-  <%= form_tag( create_vimeo_path ) do%>
-    <p>
-      <%= hidden_field_tag 'vimeo_display_name', @user_info['display_name'] %>
-      <%= hidden_field_tag 'subscription_uid', @user_info['id'] %>
-      <%= hidden_field_tag 'username', @name %>
-      <%= submit_tag "Subscribe", class: 'btn btn-default' %>
-    </p>
+    <%= form_tag( create_vimeo_path ) do%>
+      <p>
+        <%= hidden_field_tag 'vimeo_display_name', user.name %>
+        <%= hidden_field_tag 'subscription_uid', user.uid %>
+        <%#= hidden_field_tag 'username', @name %>
+        <%= submit_tag "Subscribe", class: 'btn btn-default' %>
+      </p>
+    <% end %>
+
+
   <% end %>
+
+
+
 
   <p>
     <%= link_to "Back to Vimeo Search", new_vimeo_path %>

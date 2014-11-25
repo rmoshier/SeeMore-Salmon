@@ -42,6 +42,7 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    beemo (0.0.2)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -50,6 +51,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     buftok (0.2.0)
     builder (3.2.2)
     coderay (1.1.0)
@@ -114,6 +117,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    octokit (3.5.2)
+      sawyer (~> 0.5.3)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -203,6 +208,9 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
+    sawyer (0.5.5)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -251,14 +259,17 @@ GEM
       json (>= 1.1.9)
       multipart-post (>= 1.0.1)
       oauth (>= 0.4.3)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  beemo
   better_errors
   binding_of_caller
   bootstrap-sass (= 3.2.0.2)
+  bootstrap-will_paginate (~> 0.0.10)
   coffee-rails (~> 4.0.0)
   dotenv-rails
   factory_girl_rails
@@ -266,6 +277,7 @@ DEPENDENCIES
   instagram!
   jbuilder (~> 2.0)
   jquery-rails
+  octokit (~> 3.0)
   omniauth
   omniauth-github
   omniauth-instagram
@@ -284,3 +296,4 @@ DEPENDENCIES
   twitter
   uglifier (>= 1.3.0)
   vimeo
+  will_paginate (~> 3.0.5)

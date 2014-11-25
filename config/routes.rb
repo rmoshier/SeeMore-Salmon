@@ -42,6 +42,11 @@ Rails.application.routes.draw do
   post '/instagram/new',            to: "instagram#create"
   get '/instagram/show',            to: "instagram#show",       as: :show_instagram
 
+  #Github routes
+  get '/githubs/new',               to: 'githubs#new',      as: :new_github
+  get '/githubs/search',            to: 'githubs#show',     as: :githubs_search
+  post '/githubs/create',           to: 'githubs#create'
+
   # Subscription routes
   post 'subscriptions/:feed_uid',    to: 'subscriptions#create', as: :subscription
 
