@@ -1,13 +1,36 @@
+<script>
+
+
+
+$(function () { $(".choose").click(function (e) {
+  e.preventDefault();
+  var div = $(this).parents(".club");
+  var url = $(this).parents("form").attr("action");
+  $.ajax(url, {
+  type: "POST",
+  success: function (data) {
+    div.addClass("chosen") } }); }); });
+
+</script>
+
+
+
 <div class="container">
   <h1>Instagram Search Results</h1>
 
 
-
 <% @results.each do |r| %>
-
-      <p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
-      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
-      <%= r.full_name %>
-      <%= submit_tag "Subscribe", class: 'choose btn btn-default' %></p>
-
+  <div class='club row'>
+<p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
+<%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+<%= r.full_name %>
+    </p>
+    <div class=' col-lg-1 actions'>
+      <%= button_to "Choose", "/instagram/new", class: "choose btn btn-success"  %>
+    </div>
+  </div>
 <% end %>
+
+<p>
+  <%= link_to "Back to Instagram Search", new_instagram_path %>
+</p>
