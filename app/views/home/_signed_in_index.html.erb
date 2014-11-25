@@ -8,19 +8,17 @@
     <li><h4><i class="fa fa-github-square"></i><%= link_to "Github Users", new_github_path %></h4></li>
   </ul>
 
-
-
   <div class="feed">
     <ul>
-    <% @filtered_videos.each do | video | %>
+    <%# @filtered_videos.each do | video | %>
       <li>
-        <h3><%= video[:username] %></h3>
-        <a href="<%= video[:url] %>">
-          <img src="<%= video[:thumbnail] %>" alt="icon" />
-          <h4><%= video[:title] %></h4>
+        <h3><%#= video[:username] %></h3>
+        <!-- <a href="<%#= video[:url] %>"> -->
+          <!-- <img src="<%#= video[:thumbnail] %>" alt="icon" /> -->
+          <h4><%#= video[:title] %></h4>
         </a>
       </li>
-    <% end %>
+    <%# end %>
     </ul>
   </div>
 </div>
