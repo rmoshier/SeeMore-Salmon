@@ -27,6 +27,7 @@ $(function () { $(".choose").click(function (e) {
     </p>
     <div class=' col-lg-1 actions'>
       <%= button_to "Choose", "/instagram/new", class: "choose btn btn-success"  %>
+      <%= input type="hidden", name="UID", value= r.uid %>
     </div>
   </div>
 <% end %>
