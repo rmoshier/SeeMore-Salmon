@@ -2,18 +2,12 @@
 <div class="container">
   <h3>Github Search Results</h3>
     <% @search_results[:items].each do |results| %>
-    <ul class="list-unstyled">
-      <dl class="dl-horizontal">
-          <img class="twitter-icon" src="<%= results[:avatar_url] %>">
-        <dd>
-          <strong>
-            <%= results[:login] %>
-          </strong>
-          <div>
-            <%= link_to results[:login], "http://github.com/#{results[:login]}", target: "_blank" %>
-          </div>
-        </dd>
-      </dl>
-    </ul>
+
+      <p>
+        <img class="github-icon" src="<%= results[:avatar_url] %>">
+        <%= link_to results[:login], "http://github.com/#{results[:login]}", target: "_blank" %>
+        <%= submit_tag "Subscribe", class: 'btn btn-default' %>
+      </p>
+
     <% end %>
 </div>
