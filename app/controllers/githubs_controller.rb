@@ -6,10 +6,17 @@ class GithubsController < ApplicationController
     # raise
   end
 
+  def show
+    @client = Octokit::Client.new(:access_token => find_provider.token)
+    @search_results = @client.search_users("#{params[:q]} in:login")
+    # raise
+  end
+
+# Octokit.search_users("book in:login")
+
   def search
     find_provider
-    @search_results = @client.search_users("params[:user.name] in:login")
-
+    # raise
     # client = Instagram.client(:access_token => session[:access_token])
     # create_github_client
     # find_provider
@@ -25,7 +32,7 @@ class GithubsController < ApplicationController
   end
 
   def create_github_client
-    @client = Octokit::Client.new(:access_token => find_provider.token)
+    # @client = Octokit::Client.new(:access_token => find_provider.token)
     # line 25 is for if we needed to be authenticated
   end
 
