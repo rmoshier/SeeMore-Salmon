@@ -17,31 +17,33 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback",   to: "sessions#create"
   post "/auth/:developer/callback", to: "sessions#create"
-  get "/logout",                    to: "sessions#destroy", as: :logout
+  get "/logout",                    to: "sessions#destroy",     as: :logout
 
   # Vimeo routes
-  get '/vimeo/index',               to: "vimeo#index",      as: :vimeo
-  get '/vimeo/search',              to: "vimeo#search",     as: :vimeo_search
-  get '/vimeo/new',                 to: "vimeo#new",        as: :new_vimeo
-  post '/vimeo/create',             to: "vimeo#create",     as: :create_vimeo
+  get '/vimeo/index',               to: "vimeo#index",          as: :vimeo
+  get '/vimeo/search',              to: "vimeo#search",         as: :vimeo_search
+  get '/vimeo/new',                 to: "vimeo#new",            as: :new_vimeo
+  post '/vimeo/create',             to: "vimeo#create",         as: :create_vimeo
   get '/vimeo/update',              to: "vimeo#update"
   patch '/vimeo/edit',              to: "vimeo#edit"
   delete '/vimeo/destroy',          to: "vimeo#destroy"
-  get '/vimeo/show',                to: "vimeo#show",       as: :show_vimeo
+  get '/vimeo/show',                to: "vimeo#show",           as: :show_vimeo
 
   # Twitter routes
-  get '/twitter/new',               to: 'twitter#new',      as: :new_twitter
-  get '/twitter/search',            to: 'twitter#show',     as: :twitter_search
+  get '/twitter/new',               to: 'twitter#new',          as: :new_twitter
+  get '/twitter/search',            to: 'twitter#show',         as: :twitter_search
   post '/twitter/create',           to: 'twitter#create'
 
   #Instagram routes
-  get '/instagram/index',           to: "instagram#index",  as: :instagram
-  get '/instagram/search',          to: "instagram#search", as: :instagram_search
+  get '/instagram/index',           to: "instagram#index",      as: :instagram
+  get '/instagram/search',          to: "instagram#search",     as: :instagram_search
   # post '/instagram/search', to: "instagram#search"
-  get '/instagram/new',             to: "instagram#new",    as: :new_instagram
+  get '/instagram/new',             to: "instagram#new",        as: :new_instagram
   post '/instagram/new',            to: "instagram#create"
-  get '/instagram/show',            to: "instagram#show",   as: :show_instagram
+  get '/instagram/show',            to: "instagram#show",       as: :show_instagram
 
+  # Subscription routes
+  post 'subscriptions/:user_id',    to: 'subscriptions#create', as: :subscription
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
