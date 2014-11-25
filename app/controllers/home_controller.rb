@@ -1,15 +1,16 @@
 class HomeController < ApplicationController
+  include HTTParty
   Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
     # Gather all subscriptions for user
-    subscriptions = Feed.where(user_id: session[:user_id])
+    feeds = Feed.where(user_id: session[:user_id])
     # Get vimeo subscriptions from all subscriptions
-    vimeo_subscriptions = subscriptions.select {|sub| sub.provider == "vimeo"}
-    # Get vimeo usernames for searching api
-    vimeo_usernames = vimeo_subscriptions.collect {|sub| sub.username}
-    # Searching vimeo api with vimeo usernames, returns parsed vimeo json obejct
-    @vimeo_vids = vimeo_usernames.collect {|user| Vimeo::Simple::User.videos(user)}
+    vimeo_feeds = feeds.select {|feed| feed.provider == "vimeo"}
+    # Get vimeo uid's for searching api
+    vimeo_uids = vimeo_feeds.collect {|feed| feed.uid.to_s}
+    # Searching vimeo api with vimeo uids, returns parsed vimeo json obejct
+    @vimeo_vids = vimeo_uids.collect {|uid|   HTTParty.get("http://vimeo.com/api/v2/" + uid + "/videos.json")}
 
     ###### THE ACTUAL CODE ######
     @filtered_videos = @vimeo_vids.collect do |httparty|
@@ -19,6 +20,8 @@ class HomeController < ApplicationController
     end
 
     @filtered_videos = @filtered_videos.flatten
+
+    #raise
 
   end
 
