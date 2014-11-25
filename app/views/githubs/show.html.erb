@@ -1,7 +1,8 @@
-
+<%#= raise %>
 <div class="container">
   <h3>Github Search Results</h3>
     <% @search_results[:items].each do |f| %>
     <%= f[:login] %>
+    <img class="github-icon" src="<%= f[:avatar_url] %>">
     <% end %>
 </div>
