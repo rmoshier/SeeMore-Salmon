@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get '/instagram/show',            to: "instagram#show",       as: :show_instagram
 
   # Subscription routes
-  post 'subscriptions/:user_id',    to: 'subscriptions#create', as: :subscription
+  post 'subscriptions/:feed_uid',    to: 'subscriptions#create', as: :subscription
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
