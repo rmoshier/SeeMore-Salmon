@@ -18,14 +18,14 @@ class InstagramController < ApplicationController
     create_instagram_client
     find_provider
     @srch = params[:q]
-    @results = Instagram.client.user_search(@srch)
+    @feed = Instagram.client.user_search(@srch)
 
   end
 
 
   def create
     find_provider
-    
+
     @feed = Feed.find_by_uid(params[:feed_uid])
 
     if @feed

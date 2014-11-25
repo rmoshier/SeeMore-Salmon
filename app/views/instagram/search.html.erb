@@ -5,7 +5,7 @@
   <h1>Instagram Search Results</h1>
 
 
-<% @results.each do |r| %>
+<% @feed.each do |r| %>
   <div class='club row'>
 <p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
 <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
@@ -14,6 +14,7 @@
     </p>
     <div class=' col-lg-1 actions'>
       <%= button_to "Go", "/instagram/new", class: 'choose btn btn-default' %>
+      <% @feed = r.id %>
       <%= hidden_field_tag "[provider_uid]", r.id, class: "info" %>
 
     </div>
