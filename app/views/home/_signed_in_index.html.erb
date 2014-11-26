@@ -10,11 +10,13 @@
 
   <div class="feed">
     <ul>
-    <% @feeds.each do |feed| %>
-      <li>
-        <h3><%= feed.inspect %></h3>
-      </li>
-    <% end %>
+      <% if @filtered_videos != nil %>
+        <% @filtered_videos.each do |feed| %>
+          <li>
+            <h3><%= feed.inspect %></h3>
+          </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 </div>
