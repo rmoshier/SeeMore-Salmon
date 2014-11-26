@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
+
     #@feeds = current_user.feeds
     #create_twitter_client
 
@@ -14,38 +15,24 @@ class HomeController < ApplicationController
     # git checkout commit# file_path then hash from the
     # git checkout commit# db/migrate/
     # rake db:drop dp:create db:migrate
+    if session[:user_id] != nil
+      # get vimeo Feed objects only
+      vimeo_feeds = current_user.feeds.find_all{ |feed| feed.provider == "vimeo" }
+      # Get vimeo Feed uid's for searching api
+      vimeo_uids = vimeo_feeds.collect {|feed| feed.uid.to_s}
+      # Searching vimeo api with vimeo uids, returns parsed vimeo json obejct
+      @vimeo_vids = vimeo_uids.collect {|uid| HTTParty.get("http://vimeo.com/api/v2/" + uid + "/videos.json")}
 
+      ###### Getting info out of nested data structure ######
+      @filtered_videos = @vimeo_vids.collect do |httparty|
+       httparty.collect do |video_object|
+         filter_video_response(video_object)
+       end
+      end
 
+      @filtered_videos = @filtered_videos.flatten
 
-    # still not working.
-    # 1 get subscriptions of a user
-    subscriptions = Subscription.where(user_id: session[:user_id].to_s)
-    # 2 get feeds from subscriptions
-    feeds = subscriptions.collect {|subscription| Feed.where(id: subscription.feed_id)}
-    #raise
-    # Get vimeo feeds from all subscriptions
-    vimeo_feeds = feeds.select {|feed| feed.provider == "vimeo"}
-
-
-    ## THIS WAS the start of a merge conflict
-    #feeds = Feed.where(uid: session[:user_id])
-    # Get vimeo subscriptions from all subscriptions
-    #vimeo_feeds = feeds.select {|feed| feed.provider == "vimeo"}
-
-    ## This was the end
-    # Get vimeo uid's for searching api
-    vimeo_uids = vimeo_feeds.collect {|feed| feed.uid.to_s}
-    # Searching vimeo api with vimeo uids, returns parsed vimeo json obejct
-    @vimeo_vids = vimeo_uids.collect {|uid|   HTTParty.get("http://vimeo.com/api/v2/" + uid + "/videos.json")}
-
-    ###### Getting info out of nested data structure ######
-    @filtered_videos = @vimeo_vids.collect do |httparty|
-     httparty.collect do |video_object|
-       filter_video_response(video_object)
-     end
     end
-
-    @filtered_videos = @filtered_videos.flatten
   end
 
   def filter_video_response(raw_video_object)
