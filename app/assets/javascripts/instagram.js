@@ -1,9 +1,17 @@
 
-$(function() {
-  $(".choose").click(function(event){
-    event.preventDefault();
 
-    $( this ).addClass( "subscribed" );  //#what the method was called on in the first place. ALSO finding the one related to this button.
-
+$(function () { $(".choose").click(function (e) {
+      e.preventDefault();
+      var div = $(this).parents(".club");
+      var url = $(this).parents("form").attr("action");
+      var d = $(".info").val();
+      $.ajax(url, {
+      type: "POST",
+      success: function (data) {
+        div.addClass("chosen"); },
+      error: function () {
+          alert("ERROR");},
+      data: d, 
+        });
+      });
     });
-  });
