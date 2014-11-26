@@ -26,6 +26,23 @@ require 'spec_helper'
     end
   end
 
+  describe "#search" do
+    it "equals nil when incorrect inputs are searched" do
+      @results = Instagram.client.user_search("//")
+      expect @results != '//'
+
+    end
+  end
+
+  describe "#create" do
+    it "creates a new instance in the feed class" do
+        # @feed = Feed.find_by_uid(params[:feed_uid])
+        # @feed = 1
+    end
+  end
+
+
+
 
 
 
