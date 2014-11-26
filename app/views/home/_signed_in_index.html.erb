@@ -10,15 +10,11 @@
 
   <div class="feed">
     <ul>
-    <%# @filtered_videos.each do | video | %>
+    <% @feeds.each do |feed| %>
       <li>
-        <h3><%#= video[:username] %></h3>
-        <!-- <a href="<%#= video[:url] %>"> -->
-          <!-- <img src="<%#= video[:thumbnail] %>" alt="icon" /> -->
-          <h4><%#= video[:title] %></h4>
-        </a>
+        <h3><%= feed.inspect %></h3>
       </li>
-    <%# end %>
+    <% end %>
     </ul>
   </div>
 </div>

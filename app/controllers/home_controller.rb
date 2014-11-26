@@ -1,16 +1,19 @@
 class HomeController < ApplicationController
+  #before_action :current_user
+
   include HTTParty
   Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
+    #@feeds = current_user.feeds
+    #create_twitter_client
+
+
     # Gather all subscriptions for user
     # change this
     # git checkout commit# file_path then hash from the
     # git checkout commit# db/migrate/
     # rake db:drop dp:create db:migrate
-
-
-
 
     #feeds = Feed.where(uid: session[:user_id])
     # Get vimeo subscriptions from all subscriptions
@@ -40,6 +43,16 @@ class HomeController < ApplicationController
   end
 
   def show
+  end
 
+  def create_twitter_client
+    provider = Provider.find_by_user_id(session[:user_id])
+
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_API_KEY"]
+      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+      config.access_token        = provider.token
+      config.access_token_secret = provider.secret
+    end
   end
 end

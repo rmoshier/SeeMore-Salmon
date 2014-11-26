@@ -1,12 +1,26 @@
+
+
+
 <div class="container">
   <h1>Instagram Search Results</h1>
 
 
+<% @feed.each do |r| %>
+  <div class='club row'>
+<p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
+<%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
+<%= r.full_name %>
 
-<% @results.each do |r| %>
+    </p>
+    <div class=' col-lg-1 actions'>
+      <%= button_to "Go", "/instagram/new", class: 'choose btn btn-default' %>
+      <% @feed = r.id %>
+      <%= hidden_field_tag "[provider_uid]", r.id, class: "info" %>
 
-      <p><%= link_to image_tag("#{r.profile_picture}"), "http://instagram.com/#{r.username}" %>
-      <%= link_to r.username, "http://instagram.com/#{r.username}", target: "_blank" %>
-      <%= submit_tag "Subscribe", class: 'btn btn-default' %></p>
-
+    </div>
+  </div>
 <% end %>
+
+<p>
+  <%= link_to "Back to Instagram Search", new_instagram_path %>
+</p>
