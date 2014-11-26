@@ -13,7 +13,6 @@ class GithubsController < ApplicationController
 
   def create
     @feed = Feed.find_by_uid(params[:uid])
-    # raise
 
     if @feed
       current_user.subscriptions.create(feed_id: @feed.id)
