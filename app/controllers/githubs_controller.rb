@@ -12,13 +12,13 @@ class GithubsController < ApplicationController
   end
 
   def create
-    @feed = Feed.find_by_uid(params[:feed_uid])
+    @feed = Feed.find_by_uid(params[:uid])
+    # raise
 
     if @feed
       current_user.subscriptions.create(feed_id: @feed.id)
     else
-      current_user.feeds.create(provider: params["controller"],
-                                uid: params[:feed_uid])
+      current_user.feeds.create(username: params["username"], uid: params["uid"], provider: params["provider"])
     end
     redirect_to root_path
   end

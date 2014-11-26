@@ -1,13 +1,21 @@
 <%#= raise %>
 <div class="container">
-  <h3>Github Search Results</h3>
-    <% @search_results[:items].each do |results| %>
+  <h1>Github Search Results</h1>
 
-      <p>
-        <img class="github-icon" src="<%= results[:avatar_url] %>">
-        <%= link_to results[:login], "http://github.com/#{results[:login]}", target: "_blank" %>
-        <%= submit_tag "Subscribe", class: 'btn btn-default' %>
-      </p>
+    <% @search_results[:items].each do |result| %>
+      <h3><%= link_to result[:login], "http://github.com/#{result[:login]}", target: "_blank" %></h3>
+
+      <% if result[:avatar_url] != nil %>
+        <img class="github-icon" src="<%= result[:avatar_url] %>">
+      <% end %>
+      <%= form_tag(github_path) do %>
+        <p>
+          <%= hidden_field_tag 'username', result[:login] %>
+          <%= hidden_field_tag 'uid', result[:id] %>
+          <%= hidden_field_tag 'provider', "github" %>
+          <%= submit_tag "Subscribe", class: 'btn btn-default' %>
+        </p>
+      <% end %>
 
     <% end %>
 
