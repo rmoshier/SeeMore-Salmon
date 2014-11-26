@@ -10,7 +10,10 @@ class InstagramController < ApplicationController
   end
 
 
-  def show
+  def show #showing who they follow.
+    create_instagram_client
+    find_provider
+    @user = Instagram.client.user_recent_media
   end
 
   def search
@@ -46,7 +49,7 @@ class InstagramController < ApplicationController
     Instagram.configure do |config|
       config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
       config.client_secret = ENV["INSTAGRAM_API_SECRET"]
-      # config.access_token_secret = @provider.secret
+      config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
 

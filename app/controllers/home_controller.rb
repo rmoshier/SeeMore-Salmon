@@ -31,6 +31,7 @@ class HomeController < ApplicationController
       end
 
       @filtered_videos = @filtered_videos.flatten
+      @show = Subscriptions.where(user_id = session[:user_id])
 
     end
   end
