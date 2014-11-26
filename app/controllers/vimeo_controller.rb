@@ -2,7 +2,6 @@ class VimeoController < ApplicationController
   before_action :current_user
 
   def index
-    @treehouse = Beemo::User.search("treehouse") # => A list of users
   end
 
   def search
@@ -22,9 +21,10 @@ class VimeoController < ApplicationController
     @vimeo_feed = Feed.new
     @vimeo_feed.username = @vimeo_username
     @vimeo_feed.uid = @vimeo_uid
-    @vimeo_feed.user_id = session[:user_id]
     @vimeo_feed.provider = "vimeo"
     if @vimeo_feed.save
+      ## JOIN TABLE FIX
+      @vimeo_feed.subscriptions.create(user_id: session[:user_id], feed_id: @vimeo_feed.id)
       redirect_to root_path
     else
       render :new
