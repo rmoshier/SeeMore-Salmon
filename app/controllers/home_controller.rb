@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   #before_action :current_user
 
   include HTTParty
-  Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
+  #Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
 
