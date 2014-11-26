@@ -31,7 +31,6 @@ class HomeController < ApplicationController
       end
 
       @filtered_videos = @filtered_videos.flatten
-
     end
   end
 
@@ -41,6 +40,7 @@ class HomeController < ApplicationController
     filtered_video_object[:url] = raw_video_object["url"]
     filtered_video_object[:thumbnail] = raw_video_object["thumbnail_medium"]
     filtered_video_object[:username] = raw_video_object["user_name"]
+    filtered_video_object[:upload_date] = DateTime.strptime(raw_video_object["upload_date"],  '%Y-%m-%d %H:%M:%S')
     return filtered_video_object
   end
 
