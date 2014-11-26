@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
+  #before_action :current_user
+
   include HTTParty
   Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
-    @feeds = current_user.feeds
-    create_twitter_client
-    raise
+    #@feeds = current_user.feeds
+    #create_twitter_client
+
 
     # Gather all subscriptions for user
     # change this
