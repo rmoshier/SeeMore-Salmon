@@ -3,6 +3,7 @@
   <h1>Github Search Results</h1>
 
     <% @search_results[:items].each do |result| %>
+      <div class='result row'>
       <h3><%= link_to result[:login], "http://github.com/#{result[:login]}", target: "_blank" %></h3>
 
       <% if result[:avatar_url] != nil %>
@@ -10,13 +11,14 @@
       <% end %>
       <%= form_tag(github_path) do %>
         <p>
-          <%= hidden_field_tag 'username', result[:login] %>
-          <%= hidden_field_tag 'uid', result[:id] %>
-          <%= hidden_field_tag 'provider', "github" %>
-          <%= submit_tag "Subscribe", class: 'btn btn-default' %>
+          <%= hidden_field_tag 'username', result[:login], class: "github_name" %>
+          <%= hidden_field_tag 'uid', result[:id], class: "github_id" %>
+          <%= hidden_field_tag 'provider', "github", class: "github_provider"%>
+          <%= submit_tag "Subscribe", class: ' choose_github btn btn-default' %>
         </p>
       <% end %>
 
+      </div>
     <% end %>
 
     <p>
