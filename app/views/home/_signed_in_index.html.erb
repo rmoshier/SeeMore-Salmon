@@ -8,42 +8,28 @@
     <li><h4><i class="fa fa-github-square"></i><%= link_to "Github Users", new_github_path %></h4></li>
   </ul>
 
-  <div class="feed">
-    <ul>
-      <% if @filtered_videos %>
-        <% @filtered_videos.each do |feed| %>
-          <li>
-            <h3><%= feed.inspect %></h3>
-          </li>
-        <% end %>
-      <% end %>
-
-
-
-
-      <% if @posts %>
-        <% @posts.each do |post| %>
-        <ul class="list-unstyled">
-          <dl class="dl-horizontal">
-            <dt>
-              <!-- Add accessibility tag -->
-              <img class="feed" src="<%= post.author_profile_pic %>">
-            </dt>
-            <dd>
-              <%= post.author_name %>
-              <small>
-                @<%= post.author_handle %>
-              </small>
-            </dd>
-            <dd>
-              <% if post.feed.provider == "vimeo" || "instagram" %>
-                <img class="visual-media"> <%= post.content %>
-              <% else %>
-                <%= post.content %>
-              <% end  %>
-            </dd>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
+  <!-- <div class="feed"> -->
+  <% if @posts %>
+    <% @posts.each do |post| %>
+    <ul class="list-unstyled">
+      <dl class="dl-horizontal">
+        <dt>
+          <!-- Add accessibility tag -->
+          <img class="feed" src="<%= post.author_profile_pic %>">
+        </dt>
+        <dd>
+          <%= post.author_name %>
+          <small>
+            @<%= post.author_handle %>
+          </small>
+        </dd>
+        <dd>
+          <% if post.feed.provider == "vimeo" || "instagram" %>
+            <img class="visual-media"> <%= post.content %>
+          <% else %>
+            <%= post.content %>
+          <% end  %>
+        </dd>
+    <% end %>
+  <% end %>
 </div>
