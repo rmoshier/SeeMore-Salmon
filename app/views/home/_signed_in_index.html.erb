@@ -10,7 +10,7 @@
 
   <div class="feed">
     <ul>
-      <% if @filtered_videos != nil %>
+      <% if @filtered_videos %>
         <% @filtered_videos.each do |feed| %>
           <li>
             <h3><%= feed.inspect %></h3>
@@ -18,12 +18,32 @@
         <% end %>
       <% end %>
 
+
+
+
       <% if @posts %>
-        <%= @posts.each do |post| %>
-          <%= post %>
+        <% @posts.each do |post| %>
+        <ul class="list-unstyled">
+          <dl class="dl-horizontal">
+            <dt>
+              <!-- Add accessibility tag -->
+              <img class="feed" src="<%= post.author_profile_pic %>">
+            </dt>
+            <dd>
+              <%= post.author_name %>
+              <small>
+                @<%= post.author_handle %>
+              </small>
+            </dd>
+            <dd>
+              <% if post.feed.provider == "vimeo" || "instagram" %>
+                <img class="visual-media"> <%= post.content %>
+              <% else %>
+                <%= post.content %>
+              <% end  %>
+            </dd>
         <% end %>
       <% end %>
-
     </ul>
   </div>
 </div>
