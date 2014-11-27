@@ -7,8 +7,12 @@ class HomeController < ApplicationController
   def index
     if session[:user_id]
     # Kristen to refactor this...
+
+
     create_twitter_client
     twitter_feeds = current_user.feeds.where(provider: "twitter")
+
+
     twitter_feeds.each do |feed|
       # put this in a new method
       @client.user_timeline(feed.uid.to_i).each do |tweet|
@@ -66,13 +70,13 @@ class HomeController < ApplicationController
   end
 
   def create_twitter_client
-    provider = Provider.find_by_user_id(session[:user_id])
+    @provider = Provider.find_by_user_id(session[:user_id])
 
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-      config.access_token        = provider.token
-      config.access_token_secret = provider.secret
+      config.access_token        = Provider.find_by_user_id(session[:user_id]).token
+      config.access_token_secret = @provider.secret
     end
   end
 end
