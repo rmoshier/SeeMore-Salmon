@@ -12,9 +12,7 @@
 
     <%= form_tag( create_vimeo_path ) do%>
       <p>
-        <%= hidden_field_tag 'vimeo_display_name', user.name %>
         <%= hidden_field_tag 'subscription_uid', user.uid %>
-        <%#= hidden_field_tag 'username', @name %>
         <%= submit_tag "Subscribe", class: 'btn btn-default' %>
       </p>
     <% end %>

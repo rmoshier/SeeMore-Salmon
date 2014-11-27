@@ -12,18 +12,12 @@ class VimeoController < ApplicationController
   end
 
   def create
-    # Gathers info from params
-    @vimeo_username = params['username']
-    @vimeo_uid = params['subscription_uid']
-    @vimeo_display_name = params['vimeo_display_name']
-
     # Saves to database as new subscription
     @vimeo_feed = Feed.new
-    @vimeo_feed.username = @vimeo_username
-    @vimeo_feed.uid = @vimeo_uid
+    @vimeo_feed.uid = params['subscription_uid']
     @vimeo_feed.provider = "vimeo"
     if @vimeo_feed.save
-      ## JOIN TABLE FIX
+      # Create join table relationship bt Feed and Subscription
       @vimeo_feed.subscriptions.create(user_id: session[:user_id], feed_id: @vimeo_feed.id)
       redirect_to root_path
     else
