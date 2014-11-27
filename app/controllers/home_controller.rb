@@ -5,9 +5,26 @@ class HomeController < ApplicationController
   Beemo.configuration[:access_token] = ENV["VIMEO_ACCESS_TOKEN"]
 
   def index
+    if session[:user_id]
+    # Kristen to refactor this...
+    create_twitter_client
+    twitter_feeds = current_user.feeds.where(provider: "twitter")
+    twitter_feeds.each do |feed|
+      # put this in a new method
+      @client.user_timeline(feed.uid.to_i).each do |tweet|
+        if tweet.id.nil?
+        feed.posts.create(author_name: tweet.user.name,
+                          author_handle: tweet.user.handle,
+                          author_profile_pic: tweet.user.profile_image_uri.to_s,
+                          content: tweet.text,
+                          uid: tweet.id,
+                          posted_time: tweet.created_at
+        )
+        end
+      end
+    end
+    @posts = Post.last(10)
 
-    #@feeds = current_user.feeds
-    #create_twitter_client
 
 
     # Gather all subscriptions for user
@@ -15,7 +32,7 @@ class HomeController < ApplicationController
     # git checkout commit# file_path then hash from the
     # git checkout commit# db/migrate/
     # rake db:drop dp:create db:migrate
-    if session[:user_id] != nil
+
       # get vimeo Feed objects only
       vimeo_feeds = current_user.feeds.find_all{ |feed| feed.provider == "vimeo" }
       # Get vimeo Feed uid's for searching api
