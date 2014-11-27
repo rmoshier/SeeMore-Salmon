@@ -5,7 +5,7 @@ class InstagramController < ApplicationController
   end
 
   def new
-    create_instagram_client
+    # create_instagram_client
     find_provider
   end
 
@@ -18,7 +18,7 @@ class InstagramController < ApplicationController
 
   def search
     # client = Instagram.client(:access_token => session[:access_token])
-    create_instagram_client
+    # create_instagram_client
     find_provider
     @srch = params[:q]
     @feed = Instagram.client.user_search(@srch)

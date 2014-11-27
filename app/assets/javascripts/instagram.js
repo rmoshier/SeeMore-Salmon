@@ -11,7 +11,7 @@ $(function () { $(".choose").click(function (e) {
         div.addClass("chosen"); },
       error: function () {
           alert("ERROR");},
-      data: d, 
+      data: {feed_uid: d},
         });
       });
     });
