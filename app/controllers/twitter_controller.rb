@@ -36,7 +36,7 @@ class TwitterController < ApplicationController
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-      config.access_token        = @provider.token
+      config.access_token        = Provider.find_by_user_id(session[:user_id]).token
       config.access_token_secret = @provider.secret
     end
   end
