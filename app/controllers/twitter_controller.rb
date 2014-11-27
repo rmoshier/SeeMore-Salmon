@@ -16,12 +16,11 @@ class TwitterController < ApplicationController
   def create
     @feed = Feed.find_by_uid(params[:feed_uid])
     if @feed
-      current_user.subscriptions.create(feed_id: @feed.id)
+      current_user.subscriptions.find_or_create_by(feed_id: @feed.id)
     else
       current_user.feeds.create(provider: params["controller"],
                                 uid: params[:feed_uid]) # missing username
     end
-    # here or elsewhere...need to create posts
     redirect_to root_path
   end
 
