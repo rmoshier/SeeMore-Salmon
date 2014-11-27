@@ -13,7 +13,7 @@ class InstagramController < ApplicationController
   def show #showing who they follow.
     create_instagram_client
     find_provider
-    @user = Instagram.client.user_recent_media
+    @user = Instagram.client.user_recent_media(34985514)
   end
 
   def search
