@@ -5,7 +5,7 @@ class InstagramController < ApplicationController
   end
 
   def new
-    create_instagram_client
+    # create_instagram_client
     find_provider
   end
 
@@ -13,12 +13,33 @@ class InstagramController < ApplicationController
   def show #showing who they follow.
     create_instagram_client
     find_provider
-    @user = Instagram.client.user_recent_media
+    #instagram_feed = current_user.feeds.where(provider: "instagram")
+    #@user = Instagram.client.user_recent_media(1574083)
+
+
+
+
+    if session[:user_id]
+    # Kristen to refactor this...
+
+
+    create_instagram_client
+    instagram_feeds = current_user.feeds.where(provider: "instagram")
+
+
+      instagram_feeds.each do |feed|
+      # put this in a new method
+        @client.user_recent_media(feed.uid.to_i).each do |photo|
+        image_tag("#{photo.images.low_resolution.url}")
+
+      end
+    end
   end
+end
 
   def search
     # client = Instagram.client(:access_token => session[:access_token])
-    create_instagram_client
+    # create_instagram_client
     find_provider
     @srch = params[:q]
     @feed = Instagram.client.user_search(@srch)

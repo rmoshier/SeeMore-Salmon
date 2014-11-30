@@ -17,6 +17,13 @@
           </li>
         <% end %>
       <% end %>
+
+      <% if @posts %>
+        <%= @posts.each do |post| %>
+          <%= post %>
+        <% end %>
+      <% end %>
+
     </ul>
   </div>
 </div>
