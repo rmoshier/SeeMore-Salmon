@@ -26,7 +26,6 @@ class HomeController < ApplicationController
         end
       end
 
-
     # VIMEO POSTS IN DB
 
     # get vimeo Feed objects only
