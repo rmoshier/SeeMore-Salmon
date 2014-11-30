@@ -25,7 +25,7 @@ class HomeController < ApplicationController
         )
         end
       end
-    end
+
 
     # VIMEO POSTS IN DB
 
@@ -46,7 +46,8 @@ class HomeController < ApplicationController
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
-  @posts = Post.last(10)
+    @posts = Post.last(10)
+    end
   end
 
   def filter_video_response(raw_video_object)
