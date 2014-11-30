@@ -32,7 +32,6 @@ class HomeController < ApplicationController
     end
     @posts = Post.last(10)
 
-
     # Gather all subscriptions for user
     # change this
     # git checkout commit# file_path then hash from the
