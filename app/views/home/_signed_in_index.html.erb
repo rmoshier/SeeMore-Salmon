@@ -20,16 +20,17 @@
         <dd>
           <%= post.author_name %>
           <small>
-            @<%= post.author_handle %>
+            @<%= post.author_handle %><br>
           </small>
-        </dd>
-        <dd>
-          <% if post.feed.provider == "vimeo" || "instagram" %>
-            <img class="visual-media"> <%= post.content %>
+          <% if post.feed.provider == "vimeo" %>
+            <img class="visual-media" src="<%= post.content %>">
+          <% elsif post.feed.provider == "instagram" %>
+            <img class="visual-media" src="<%= post.content %>">
           <% else %>
             <%= post.content %>
-          <% end  %>
+          <% end %>
         </dd>
+      </dl>
     <% end %>
   <% end %>
 </div>
