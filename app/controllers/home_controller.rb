@@ -94,8 +94,6 @@ class HomeController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
   def create_instagram_client
     @provider = Provider.find_by_user_id(session[:user_id])
 
@@ -105,5 +103,4 @@ class HomeController < ApplicationController
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
->>>>>>> master
-end
+end 
