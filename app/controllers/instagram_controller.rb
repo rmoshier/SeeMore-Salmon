@@ -15,27 +15,8 @@ class InstagramController < ApplicationController
     find_provider
     #instagram_feed = current_user.feeds.where(provider: "instagram")
     #@user = Instagram.client.user_recent_media(1574083)
-
-
-
-
-    if session[:user_id]
-    # Kristen to refactor this...
-
-
-    create_instagram_client
-    instagram_feeds = current_user.feeds.where(provider: "instagram")
-
-
-      instagram_feeds.each do |feed|
-      # put this in a new method
-        @client.user_recent_media(feed.uid.to_i).each do |photo|
-        image_tag("#{photo.images.low_resolution.url}")
-
-      end
-    end
   end
-end
+
 
   def search
     # client = Instagram.client(:access_token => session[:access_token])
