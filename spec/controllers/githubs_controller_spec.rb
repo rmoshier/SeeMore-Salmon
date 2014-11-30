@@ -20,11 +20,11 @@ RSpec.describe GithubsController, :type => :controller do
       end
     end
 
-    # describe "#search" do
+    # describe "#create_github_client" do
     #   #rachel
     #   it "takes the variable and inserts it into the API search for github" do
-    #     @results = Github.client.user_search("Bookis")
-    #     expect @results = "Bookis"
+    #     @client = Octokit::Client.new(:access_token => find_provider.token)
+    #     expect @client = "Bookis"
     #   end
     # end
 
