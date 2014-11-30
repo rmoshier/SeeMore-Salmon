@@ -13,6 +13,14 @@ class InstagramController < ApplicationController
   def show #showing who they follow.
     create_instagram_client
     find_provider
+    instagram_feeds = current_user.feeds.where(provider: "instagram")
+    instagram_feeds.each do |feed|
+      @instaclient.user_recent_media(feed.uid.to_i).each do |ig|
+        if ig.id.nil?
+          feed.posts.create(author_name: ig.user.name)
+        end
+    end
+
     #instagram_feed = current_user.feeds.where(provider: "instagram")
     #@user = Instagram.client.user_recent_media(1574083)
   end
