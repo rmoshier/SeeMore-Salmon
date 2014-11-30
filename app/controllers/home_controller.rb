@@ -25,7 +25,9 @@ class HomeController < ApplicationController
                           uid: tweet.id,
                           posted_time: tweet.created_at
         )
-        # end
+
+          #KRISTENS END
+        end
       end
     end
     @posts = Post.last(10)
@@ -92,4 +94,16 @@ class HomeController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
+=======
+  def create_instagram_client
+    @provider = Provider.find_by_user_id(session[:user_id])
+
+    @instaclient = Instagram.configure do |config|
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
+      config.access_token =  Provider.find_by_user_id(session[:user_id]).token
+    end
+  end
+>>>>>>> master
 end
