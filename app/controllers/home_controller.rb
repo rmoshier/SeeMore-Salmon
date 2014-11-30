@@ -46,7 +46,7 @@ class HomeController < ApplicationController
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
-    @posts = Post.last(10)
+    @posts = current_user.posts.last(10)
     end
   end
 
