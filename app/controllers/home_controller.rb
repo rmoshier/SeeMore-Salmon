@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       # put this in a new method
       @client.user_timeline(feed.uid.to_i).each do |tweet|
         # try find_or_create_by(uid: blahblahid)
-        # if tweet.id.nil?
+        #if tweet.id.nil?
         feed.posts.create(author_name: tweet.user.name,
                           author_handle: tweet.user.handle,
                           author_profile_pic: tweet.user.profile_image_uri.to_s,
@@ -23,6 +23,7 @@ class HomeController < ApplicationController
                           uid: tweet.id,
                           posted_time: tweet.created_at
         )
+        #end
         end
       end
 
@@ -45,7 +46,7 @@ class HomeController < ApplicationController
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
-    @posts = Post.last(10)
+    @posts = current_user.posts.order("posted_time").limit(20)
     end
   end
 
