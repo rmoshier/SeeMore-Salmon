@@ -24,6 +24,12 @@ class HomeController < ApplicationController
                           uid: tweet.id,
                           posted_time: tweet.created_at
         )
+
+
+
+
+
+          #KRISTENS END
         end
       end
     end
@@ -77,6 +83,16 @@ class HomeController < ApplicationController
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
       config.access_token        = Provider.find_by_user_id(session[:user_id]).token
       config.access_token_secret = @provider.secret
+    end
+  end
+
+  def create_instagram_client
+    @provider = Provider.find_by_user_id(session[:user_id])
+
+    @instaclient = Instagram.configure do |config|
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
+      config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
 end
