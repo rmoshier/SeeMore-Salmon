@@ -19,6 +19,7 @@ class InstagramController < ApplicationController
         if ig.id.nil?
           feed.posts.create(author_name: ig.user.name)
         end
+      end
     end
 
     #instagram_feed = current_user.feeds.where(provider: "instagram")
