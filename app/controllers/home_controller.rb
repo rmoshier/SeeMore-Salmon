@@ -8,10 +8,8 @@ class HomeController < ApplicationController
     if session[:user_id]
     # Kristen to refactor this...
 
-
     create_twitter_client
     twitter_feeds = current_user.feeds.where(provider: "twitter")
-
 
     twitter_feeds.each do |feed|
       # put this in a new method
@@ -25,19 +23,9 @@ class HomeController < ApplicationController
                           uid: tweet.id,
                           posted_time: tweet.created_at
         )
-
-          #KRISTENS END
         end
       end
     end
-    @posts = Post.last(10)
-
-
-    # Gather all subscriptions for user
-    # change this
-    # git checkout commit# file_path then hash from the
-    # git checkout commit# db/migrate/
-    # rake db:drop dp:create db:migrate
 
     # VIMEO POSTS IN DB
 
@@ -58,7 +46,7 @@ class HomeController < ApplicationController
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
-    end # end of if session check
+  @posts = Post.last(10)
   end
 
   def filter_video_response(raw_video_object)
@@ -76,7 +64,11 @@ class HomeController < ApplicationController
   def create_vimeo_posts(filtered_videos)
     filtered_videos.each do |video|
       feed_object = Feed.find_by(uid: video[:user_id].to_s)
-      post = Post.create(author_name: video[:username], posted_time: video[:upload_date], content: video[:thumbnail], uid: video[:uid], feed_id: feed_object.id)
+      Post.create(author_name: video[:username],
+                  posted_time: video[:upload_date],
+                  content: video[:thumbnail],
+                  uid: video[:uid],
+                  feed_id: feed_object.id)
     end
   end
 
@@ -94,8 +86,7 @@ class HomeController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
+
   def create_instagram_client
     @provider = Provider.find_by_user_id(session[:user_id])
 
@@ -105,5 +96,4 @@ class HomeController < ApplicationController
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
->>>>>>> master
 end
