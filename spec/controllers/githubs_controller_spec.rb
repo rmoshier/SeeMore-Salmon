@@ -7,6 +7,8 @@ RSpec.describe GithubsController, :type => :controller do
       describe "GET 'new'" do
       #rachel
         it "is successful" do
+          user = User.create
+          session[:user_id] = user.id
           get :new
           expect(response.status).to eq 200
         end
@@ -20,13 +22,13 @@ RSpec.describe GithubsController, :type => :controller do
       end
     end
 
-    # describe "#create_github_client" do
-    #   #rachel
-    #   it "takes the variable and inserts it into the API search for github" do
-    #     @client = Octokit::Client.new(:access_token => find_provider.token)
-    #     expect @client = "Bookis"
-    #   end
-    # end
+    describe "#create_github_client" do
+      #rachel
+      it "takes the variable and inserts it into the API search for github" do
+        @client = Octokit::Client.new(:access_token => find_provider.token)
+        expect @client = "Bookis"
+      end
+    end
 
   end
 end
