@@ -1,18 +1,10 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe GithubsController, :type => :controller do
-
-    describe GithubsController do
-      describe "GET 'new'" do
-      #rachel
-        it "is successful" do
-          get :new
-          expect(response.status).to eq 200
-        end
-      end
+  describe GithubsController do
 
     describe "#find_provider" do
+
       #rachel
       it "figures out that the provider in this case is github" do
         figure = Provider.find_by_user_id(session[13])
@@ -20,13 +12,23 @@ RSpec.describe GithubsController, :type => :controller do
       end
     end
 
-    # describe "#search" do
-    #   #rachel
-    #   it "takes the variable and inserts it into the API search for github" do
-    #     @results = Github.client.user_search("Bookis")
-    #     expect @results = "Bookis"
-    #   end
-    # end
+    describe "#create" do
+
+      #rachel
+      it "creates a new github feed in database" do
+        expect do
+          Feed.create
+        end.to change(Feed, :count).by(1)
+      end
+
+      #rachel
+      it "is a successful redirect" do
+        user = User.create
+        session[:user_id] = user.id
+        post :create
+        expect(response.status).to eq(302)
+      end
+
+    end
 
   end
-end
