@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
                   secret: request.env['omniauth.auth']["credentials"].secret
                       )
     elsif find_provider
+      #current_user
       session[:user_id] = find_provider.user_id
     else
       User.create.providers.create(
