@@ -15,7 +15,9 @@ class HomeController < ApplicationController
       # put this in a new method
       @client.user_timeline(feed.uid.to_i).each do |tweet|
         # try find_or_create_by(uid: blahblahid)
-        if tweet.id.nil?
+
+        #if tweet.id.nil?
+
         feed.posts.create(author_name: tweet.user.name,
                           author_handle: tweet.user.handle,
                           author_profile_pic: tweet.user.profile_image_uri.to_s,
@@ -23,11 +25,10 @@ class HomeController < ApplicationController
                           uid: tweet.id,
                           posted_time: tweet.created_at
         )
+        #end
         end
       end
     end
-    end
-
     # create_github_client
     # github_feeds = current_user.feeds.where(provider: "github")
     #
@@ -59,9 +60,34 @@ class HomeController < ApplicationController
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
-    @posts = current_user.posts.last(10)
-    end
-  # end
+    @posts = current_user.posts.order("posted_time").limit(20)
+
+  end
+
+
+
+
+
+
+
+
+
+
+    instagram_feeds = current_user.feeds.where(provider: "instagram")
+
+    create_instagram_client
+    #instagram_feeds = current_user.feeds.where(provider: "instagram")
+      instagram_feeds.each do |feed|
+        Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
+          if ig.id.nil?
+            feed.posts.create(author_name: ig.full_name)
+
+          end
+        end
+      end
+
+
+
 
   def filter_video_response(raw_video_object)
     filtered_video_object = {}
@@ -104,7 +130,7 @@ class HomeController < ApplicationController
   def create_instagram_client
     @provider = Provider.find_by_user_id(session[:user_id])
 
-    @instaclient = Instagram.configure do |config|
+     Instagram.configure do |config|
       config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
       config.client_secret = ENV["INSTAGRAM_API_SECRET"]
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
@@ -116,5 +142,9 @@ class HomeController < ApplicationController
   #
   #   @github_client = Octokit::Client.new(:access_token => find_provider.token)
   # end
+
+
+  def find_provider
+    @provider = Provider.find_by_user_id(session[:user_id])
+  end
 end
-# end
