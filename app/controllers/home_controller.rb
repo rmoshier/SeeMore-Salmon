@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       # put this in a new method
       @client.user_timeline(feed.uid.to_i).each do |tweet|
         # try find_or_create_by(uid: blahblahid)
-        # if tweet.id.nil?
+        if tweet.id.nil?
         feed.posts.create(author_name: tweet.user.name,
                           author_handle: tweet.user.handle,
                           author_profile_pic: tweet.user.profile_image_uri.to_s,
@@ -25,6 +25,20 @@ class HomeController < ApplicationController
         )
         end
       end
+    end
+    end
+
+    # create_github_client
+    # github_feeds = current_user.feeds.where(provider: "github")
+    #
+    # github_feeds.each do |feed|
+    #   @github_client[:events_url].each do |github|
+    #     if github.id.nil?
+    #       feed.posts.create(
+    #
+    #       )
+    #     end
+    # end
 
     # VIMEO POSTS IN DB
 
@@ -47,7 +61,7 @@ class HomeController < ApplicationController
 
     @posts = current_user.posts.last(10)
     end
-  end
+  # end
 
   def filter_video_response(raw_video_object)
     filtered_video_object = {}
@@ -96,4 +110,11 @@ class HomeController < ApplicationController
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
+
+  # def create_github_client
+  #   @provider = Provider.find_by_user_id(session[:user_id])
+  #
+  #   @github_client = Octokit::Client.new(:access_token => find_provider.token)
+  # end
 end
+# end
