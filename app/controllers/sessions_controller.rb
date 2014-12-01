@@ -5,7 +5,14 @@ class SessionsController < ApplicationController
     @uid = request.env["omniauth.auth"]["uid"]
     @provider_name = request.env["omniauth.auth"]["provider"]
 
-    if find_provider
+    if current_user
+      current_user.providers.create(
+                  name: @provider_name,
+                  uid: @uid,
+                  token: request.env['omniauth.auth']["credentials"].token,
+                  secret: request.env['omniauth.auth']["credentials"].secret
+                      )
+    elsif find_provider
       session[:user_id] = find_provider.user_id
       #raise
     else
@@ -26,6 +33,15 @@ class SessionsController < ApplicationController
     flash[:notice] = true
     redirect_to root_path
   end
+
+  # def be
+  #   if session[:user_id]
+  #     Provider.create()
+  #   end
+
+
+
+
 
   private
 
