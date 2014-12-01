@@ -28,7 +28,7 @@ class HomeController < ApplicationController
         #end
         end
       end
-    end
+
     # create_github_client
     # github_feeds = current_user.feeds.where(provider: "github")
     #
@@ -55,14 +55,14 @@ class HomeController < ApplicationController
      httparty.collect do |video_object|
        filter_video_response(video_object)
      end
-    end
 
+    end
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
 
     @posts = current_user.posts.order("posted_time").limit(20)
 
-  end
+    end
 
 
 
@@ -110,8 +110,8 @@ class HomeController < ApplicationController
                   uid: video[:uid],
                   feed_id: feed_object.id)
     end
-  end
 
+  end
   def show
   end
 
@@ -137,14 +137,14 @@ class HomeController < ApplicationController
     end
   end
 
-  # def create_github_client
-  #   @provider = Provider.find_by_user_id(session[:user_id])
-  #
-  #   @github_client = Octokit::Client.new(:access_token => find_provider.token)
-  # end
-
+  def create_github_client
+    find_provider
+    @github_client = Octokit::Client.new(:access_token => find_provider.token)
+  end
 
   def find_provider
     @provider = Provider.find_by_user_id(session[:user_id])
+  end
+
   end
 end
