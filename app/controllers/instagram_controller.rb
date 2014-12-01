@@ -7,6 +7,19 @@ class InstagramController < ApplicationController
   def new
     create_instagram_client
     find_provider
+
+    instagram_feeds = current_user.feeds.where(provider: "instagram")
+    instagram_feeds.each do |feed|
+      Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
+        feed.posts.find_or_create_by(author_name: ig["user"]["username"],
+        author_handle: ig["user"]["username"],
+        author_profile_pic: ig["user"]["profile_picture"],
+        content: ig["images"]["low_resolution"]["url"],
+        #uid: ig["user"]["id"],
+        #posted_time: ig["caption"]["created_time"]
+        )
+      end
+    end
   end
 
 
@@ -14,11 +27,11 @@ class InstagramController < ApplicationController
     create_instagram_client
     find_provider
 
-
+  end
 
     #instagram_feed = current_user.feeds.where(provider: "instagram")
     #@user = Instagram.client.user_recent_media(1574083)
-  end
+
 
 
   def search
@@ -33,6 +46,7 @@ class InstagramController < ApplicationController
 
   def create
     find_provider
+    create_instagram_client
 
     @feed = Feed.find_by_uid(params[:feed_uid])
 
@@ -58,4 +72,23 @@ class InstagramController < ApplicationController
     end
   end
 
+
+  def isprivate?(uid)
+    response = HTTParty.get('https://api.instagram.com/v1/users/#{uid}/relationship')
+    response.code == 400 ? true : false
+  end
+
 end
+
+
+# SIDE:
+# create_instagram_client
+# #find_provider
+# instagram_feeds = current_user.feeds.where(provider: "instagram")
+# instagram_feeds.each do |feed|
+#   Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
+#     #if ig.id.nil?
+#       feed.posts.create(author_name: ig.user.name)
+#     #end
+#   end
+# end

@@ -1,12 +1,23 @@
 require 'rails_helper'
 require 'spec_helper'
 
-  describe VimeoConstroller do
-    describe "GET new" do
-      # Rebecca
-      it "returns successful connection status" do
+  describe VimeoController do
+    describe "GET 'new'" do
+    # Rebecca
+      it "is successful" do
+        user = User.create
+        session[:user_id] = user.id
         get :new
-        expect(response.status).to eq(200)
+        expect(response.status).to eq 200
+      end
+    end
+
+    describe "GET 'search'" do
+      it "returns a search result in params" do
+        user = User.create
+        session[:user_id] = user.id
+        get :search, {:search => 'beyonce'}
+        expect(@name).to eq 'beyonce'
       end
     end
   end
