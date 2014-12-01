@@ -13,10 +13,8 @@ class VimeoController < ApplicationController
 
   def create
     @vimeo_uid = params['subscription_uid']
-    # Saves to database as new subscription
-    @vimeo_feed = Feed.find_or_create_by(uid: @vimeo_uid)
-    #@vimeo_feed.uid = params['subscription_uid']
-    @vimeo_feed.provider = "vimeo"
+    @vimeo_feed = Feed.find_or_create_by(uid: @vimeo_uid, provider: "vimeo")
+    # @vimeo_feed.provider = "vimeo"
     if @vimeo_feed.save
       # Create join table relationship bt Feed and Subscription
       @vimeo_feed.subscriptions.create(user_id: session[:user_id], feed_id: @vimeo_feed.id)
