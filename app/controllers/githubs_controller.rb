@@ -34,7 +34,7 @@ class GithubsController < ApplicationController
         feed.posts.find_or_create_by(
         author_handle: event[:actor][:login],
         author_profile_pic: event[:actor][:avatar_url],
-        content: event[:actor][:login]
+        content: event[:repo][:name]
       )
       end
     end
