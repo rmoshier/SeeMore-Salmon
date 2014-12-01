@@ -26,6 +26,7 @@ class InstagramController < ApplicationController
   def show #showing who they follow.
     create_instagram_client
     find_provider
+
   end
 
     #instagram_feed = current_user.feeds.where(provider: "instagram")
@@ -72,7 +73,7 @@ class InstagramController < ApplicationController
   end
 
 
-  def insta_user_is_private?(uid)
+  def isprivate?(uid)
     response = HTTParty.get('https://api.instagram.com/v1/users/#{uid}/relationship')
     response.code == 400 ? true : false
   end
