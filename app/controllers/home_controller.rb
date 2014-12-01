@@ -6,7 +6,6 @@ class HomeController < ApplicationController
 
   def index
     if session[:user_id]
-    # Kristen to refactor this...
 
     create_twitter_client
     twitter_feeds = current_user.feeds.where(provider: "twitter")
@@ -21,7 +20,7 @@ class HomeController < ApplicationController
           author_handle: tweet.user.handle,
           author_profile_pic: tweet.user.profile_image_uri.to_s,
           content: tweet.text,
-          uid: tweet.id,
+          uid: tweet.id.to_s,
           posted_time: tweet.created_at
         )
         #end
