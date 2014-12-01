@@ -49,9 +49,6 @@ class HomeController < ApplicationController
     @posts = current_user.posts.order("posted_time").limit(20)
 
     end
-
-
-
   end
 
   def filter_video_response(raw_video_object)
@@ -101,7 +98,6 @@ class HomeController < ApplicationController
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
-
 
   def find_provider
     @provider = Provider.find_by_user_id(session[:user_id])

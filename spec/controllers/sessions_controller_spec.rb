@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe SessionsController do
   describe "#destroy" do
-    # rachel
+    #rachel
     it "successfully logs out a user" do
       expect(session[:uid]).to be_nil
     end
