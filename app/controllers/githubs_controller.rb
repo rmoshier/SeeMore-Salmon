@@ -22,6 +22,22 @@ class GithubsController < ApplicationController
     redirect_to root_path
   end
 
+  def feed
+    find_provider
+    create_github_client
+    github_feeds = current_user.feeds.where(provider: "github")
+    github_feeds.each do |feed|
+      Octokit.user_events(feed.uid.to_i).each do |event|
+        feed.posts.create(
+        author_handle: event[:login],
+        author_profile_pic: event[:avatar_url],
+        content: event[:actor][:login]
+      )
+      end
+    end
+    @posts = current_user.posts.limit(20)
+  end
+
   private
 
   def find_provider
