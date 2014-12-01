@@ -52,27 +52,6 @@ class HomeController < ApplicationController
 
 
 
-
-
-
-
-
-
-
-    instagram_feeds = current_user.feeds.where(provider: "instagram")
-
-    create_instagram_client
-    #instagram_feeds = current_user.feeds.where(provider: "instagram")
-      instagram_feeds.each do |feed|
-        Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
-          if ig.id.nil?
-            feed.posts.create(author_name: ig.full_name)
-
-          end
-        end
-      end
-
-
   end
 
   def filter_video_response(raw_video_object)
