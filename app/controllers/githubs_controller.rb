@@ -41,7 +41,7 @@ class GithubsController < ApplicationController
       )
       end
     end
-    @posts = current_user.posts.limit(20)
+    # @posts = current_user.posts.limit(20)
   end
 
   private
