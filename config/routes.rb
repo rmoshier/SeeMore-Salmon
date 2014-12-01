@@ -9,13 +9,14 @@ Rails.application.routes.draw do
   post "/users/create",             to: "users#create"
   get "users/:id",                  to: "users#show",       as: :user
 
+
   # Sign-in / authenticated user routes
   get "/login",                     to: "sessions#new",     as: :login
 
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
 
-  get "/auth/:provider/callback",   to: "sessions#create"
+  get "/auth/:provider/callback",   to: "sessions#create", as: :connect
   post "/auth/:developer/callback", to: "sessions#create"
   get "/logout",                    to: "sessions#destroy",     as: :logout
 
@@ -43,9 +44,10 @@ Rails.application.routes.draw do
   get '/instagram/show',            to: "instagram#show",       as: :show_instagram
 
   #Github routes
-  get '/githubs/new',               to: 'githubs#new',      as: :new_github
-  get '/githubs/search',            to: 'githubs#show',     as: :githubs_search
-  post '/githubs/create',           to: 'githubs#create'
+  get '/githubs/new',               to: 'githubs#new',          as: :new_github
+  get '/githubs/search',            to: 'githubs#show',         as: :githubs_search
+  post '/githubs/',                 to: 'githubs#create',       as: :github
+  get '/githubs/feed',              to: 'githubs#feed'
 
   # Subscription routes
   post 'subscriptions/:feed_uid',    to: 'subscriptions#create', as: :subscription
