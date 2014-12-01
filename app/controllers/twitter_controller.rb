@@ -28,7 +28,7 @@ class TwitterController < ApplicationController
   private
 
   def find_provider
-    @provider = Provider.find_by_user_id(session[:user_id])
+    @provider = Provider.find_by(user_id: session[:user_id], name: "twitter")
   end
 
   # Better way to do this with OmniAuth?
@@ -36,7 +36,7 @@ class TwitterController < ApplicationController
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-      config.access_token        = Provider.find_by_user_id(session[:user_id]).token
+      config.access_token        = Provider.find_by(user_id: session[:user_id], name: "twitter").token
       config.access_token_secret = @provider.secret
     end
   end

@@ -47,7 +47,7 @@ class GithubsController < ApplicationController
   private
 
   def find_provider
-    @provider = Provider.find_by_user_id(session[:user_id])
+    @provider = Provider.find_by(user_id: session[:user_id], name: "github")
   end
 
   def create_github_client

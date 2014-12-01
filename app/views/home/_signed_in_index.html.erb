@@ -1,5 +1,12 @@
 <div class="container">
-
+  <ul class= "connect accounts">
+    <li><h4>Connect:</h4></li>
+    <%= link_to "Other Acct", "/users/" %>
+    <%= link_to "Twitter Acct", "/auth/twitter" %>
+    <%= link_to "Vimeo Acct", "/auth/vimeo" %>
+    <%= link_to "Instagram Acct", "/auth/instagram" %>
+    <%= link_to "Github Acct", "/auth/github" %>
+  </ul>
   <ul class="search-users">
     <li><h4>Search For: </h4></li>
     <li><h4><i class="fa fa-twitter-square"></i><%= link_to "Twitter Users", new_twitter_path %></h4></li>
