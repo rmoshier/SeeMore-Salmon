@@ -5,7 +5,7 @@ describe SessionsController do
   describe "#destroy" do
     # rachel
     it "successfully logs out a user" do
-      session[:uid].should be_nil
+      expect(session[:uid]).to be_nil
     end
   end
 
