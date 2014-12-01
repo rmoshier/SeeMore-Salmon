@@ -57,22 +57,18 @@ class InstagramController < ApplicationController
   private
 
   def find_provider
-    @provider = Provider.find_by_user_id(session[:user_id])
+    @provider = Provider.find_by(user_id: session[:user_id], name: "instagram")
   end
 
   def create_instagram_client
     Instagram.configure do |config|
       config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
       config.client_secret = ENV["INSTAGRAM_API_SECRET"]
-      config.access_token =  Provider.find_by_user_id(session[:user_id]).token
+      config.access_token =  Provider.find_by(user_id: session[:user_id], name: "instagram").token
     end
   end
 
 
-  def isprivate?(uid)
-    response = HTTParty.get('https://api.instagram.com/v1/users/#{uid}/relationship')
-    response.code == 400 ? true : false
-  end
 
 end
 
