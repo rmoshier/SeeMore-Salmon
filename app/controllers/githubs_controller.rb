@@ -1,6 +1,9 @@
 class GithubsController < ApplicationController
   before_action :current_user
 
+  def index
+  end
+
   def new
     find_provider
     create_github_client
