@@ -6,7 +6,6 @@ class HomeController < ApplicationController
 
   def index
     if session[:user_id]
-    # Kristen to refactor this...
 
     create_twitter_client
     twitter_feeds = current_user.feeds.where(provider: "twitter")
@@ -16,12 +15,13 @@ class HomeController < ApplicationController
       @client.user_timeline(feed.uid.to_i).each do |tweet|
         # try find_or_create_by(uid: blahblahid)
         #if tweet.id.nil?
-        feed.posts.create(author_name: tweet.user.name,
-                          author_handle: tweet.user.handle,
-                          author_profile_pic: tweet.user.profile_image_uri.to_s,
-                          content: tweet.text,
-                          uid: tweet.id,
-                          posted_time: tweet.created_at
+        feed.posts.find_or_create_by(
+          author_name: tweet.user.name,
+          author_handle: tweet.user.handle,
+          author_profile_pic: tweet.user.profile_image_uri.to_s,
+          content: tweet.text,
+          uid: tweet.id.to_s,
+          posted_time: tweet.created_at
         )
         #end
         end
