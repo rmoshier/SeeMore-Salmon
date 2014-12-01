@@ -27,21 +27,20 @@ RSpec.describe TwitterController, :type => :controller do
   end
 
   describe "GET #show" do
-
-    it "renders the :show template" do
-
-      client = double("Twitter::REST::Client")
-      user = User.create
-      user.providers.create
-      session[:user_id] = user.id
-
-      Twitter.stub!(:configure).and_return true
-      Twitter::Client.stub!(:new).and_return(client)
-      client.stub!(:current_user).and_return(user)
-
-      get :show
-      expect(response).to render_template(:show)
-    end
+    # it "renders the :show template" do
+    #
+    #   client = double("Twitter::REST::Client")
+    #   user = User.create
+    #   user.providers.create
+    #   session[:user_id] = user.id
+    #
+    #   Twitter.stub!(:configure).and_return true
+    #   Twitter::Client.stub!(:new).and_return(client)
+    #   client.stub!(:current_user).and_return(user)
+    #
+    #   get :show
+    #   expect(response).to render_template(:show)
+    # end
 
     # kristen
     it "redirects unauthenticated users" do
