@@ -48,7 +48,11 @@ class HomeController < ApplicationController
     create_vimeo_posts(@filtered_videos)
 
     @posts = current_user.posts.order("posted_time").limit(20)
+
     end
+
+
+
   end
 
   def filter_video_response(raw_video_object)
@@ -92,10 +96,16 @@ class HomeController < ApplicationController
   def create_instagram_client
     @provider = Provider.find_by_user_id(session[:user_id])
 
-    @instaclient = Instagram.configure do |config|
+     Instagram.configure do |config|
       config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
       config.client_secret = ENV["INSTAGRAM_API_SECRET"]
       config.access_token =  Provider.find_by_user_id(session[:user_id]).token
     end
   end
+
+
+  def find_provider
+    @provider = Provider.find_by_user_id(session[:user_id])
+  end
+
 end
