@@ -69,7 +69,7 @@ class HomeController < ApplicationController
       Post.find_or_create_by(author_name: video[:username],
                   posted_time: video[:upload_date],
                   content: video[:thumbnail],
-                  uid: video[:uid],
+                  uid: video[:uid].to_s,
                   feed_id: feed_object.id)
     end
   end
