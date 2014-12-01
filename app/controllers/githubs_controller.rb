@@ -23,14 +23,17 @@ class GithubsController < ApplicationController
   end
 
   def feed
-    find_provider
     create_github_client
+    # @variable = Octokit.user_events("rmoshier")
+    find_provider
+    @client = Octokit::Client.new(:access_token => find_provider.token)
     github_feeds = current_user.feeds.where(provider: "github")
     github_feeds.each do |feed|
       Octokit.user_events(feed.uid.to_i).each do |event|
-        feed.posts.create(
-        author_handle: event[:login],
-        author_profile_pic: event[:avatar_url],
+        # raise
+        feed.posts.find_or_create_by(
+        author_handle: event[:actor][:login],
+        author_profile_pic: event[:actor][:avatar_url],
         content: event[:actor][:login]
       )
       end
