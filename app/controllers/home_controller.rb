@@ -110,8 +110,8 @@ class HomeController < ApplicationController
         author_handle: ig["user"]["username"],
         author_profile_pic: ig["user"]["profile_picture"],
         content: ig["images"]["low_resolution"]["url"],
-        #uid: ig["user"]["id"],
-        #posted_time: DateTime.strptime((ig["caption"]["created_time"]),'%Y-%m-%d %H:%M:%S')
+        uid: ig["id"],
+        posted_time: Time.at(ig[:created_time].to_i)
         )
       end
     end
