@@ -12,7 +12,7 @@ RSpec.describe TwitterController, :type => :controller do
     it "renders the :new template" do
 
       user = User.create
-      user.providers.create
+      user.providers.create(name: "twitter")
       session[:user_id] = user.id
 
       get :new

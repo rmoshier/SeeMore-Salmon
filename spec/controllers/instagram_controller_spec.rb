@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
   describe InstagramController do
-    
+
     before do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:instagram]
     end
@@ -11,7 +11,7 @@ require 'spec_helper'
     #calla
       it "is successful" do
         user = User.create
-        user.providers.create
+        user.providers.create(name: "instagram")
         session[:user_id] = user.id
 
         get :new
