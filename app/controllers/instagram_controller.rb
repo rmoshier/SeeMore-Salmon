@@ -4,24 +4,6 @@ class InstagramController < ApplicationController
     # client = Instagram.client(:access_token => session[:access_token])
   end
 
-  def new
-    create_instagram_client
-    find_provider
-    instagram_feeds = current_user.feeds.where(provider: "instagram")
-    instagram_feeds.each do |feed|
-      Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
-        feed.posts.find_or_create_by(author_name: ig["user"]["username"],
-        author_handle: ig["user"]["username"],
-        author_profile_pic: ig["user"]["profile_picture"],
-        content: ig["images"]["low_resolution"]["url"],
-        #uid: ig["user"]["id"],
-        #posted_time: DateTime.strptime((ig["caption"]["created_time"]),'%Y-%m-%d %H:%M:%S')
-        )
-      end
-    end
-  end
-
-
   def show #showing who they follow.
     create_instagram_client
     find_provider
@@ -29,8 +11,6 @@ class InstagramController < ApplicationController
     #if you want to pull in a users feed:
     #instagram_feed = current_user.feeds.where(provider: "instagram")
     #@user = Instagram.client.user_recent_media(1574083)
-
-
 
   def search
     # client = Instagram.client(:access_token => session[:access_token])
@@ -40,7 +20,6 @@ class InstagramController < ApplicationController
     @feed = Instagram.client.user_search(@srch)
 
   end
-
 
   def create
     find_provider
