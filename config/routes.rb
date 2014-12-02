@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
 
   # Application home
-  get "/",                          to: "home#index",       as: :root
+  get "/",                          to: "home#index",           as: :root
 
   # User routes
-  get "/users",                     to: "users#index",      as: :users
-  get "/users/new",                 to: "users#new",        as: :new_user
+  get "/users",                     to: "users#index",          as: :users
+  get "/users/new",                 to: "users#new",            as: :new_user
   post "/users/create",             to: "users#create"
-  get "users/:id",                  to: "users#show",       as: :user
+  get "users/:id",                  to: "users#show",           as: :user
 
 
   # Sign-in / authenticated user routes
-  get "/login",                     to: "sessions#new",     as: :login
+  get "/login",                     to: "sessions#new",         as: :login
 
   # OAuth routes
   # /auth/:provider triggers the auth action; user is returned to:
 
-  get "/auth/:provider/callback",   to: "sessions#create", as: :connect
+  get "/auth/:provider/callback",   to: "sessions#create",      as: :connect
   post "/auth/:developer/callback", to: "sessions#create"
   get "/logout",                    to: "sessions#destroy",     as: :logout
 
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get '/githubs/feed',              to: 'githubs#feed'
 
   # Subscription routes
-  post 'subscriptions/:feed_uid',    to: 'subscriptions#create', as: :subscription
+  post 'subscriptions/:feed_uid',   to: 'subscriptions#create', as: :subscription
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
