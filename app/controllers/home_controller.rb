@@ -6,15 +6,38 @@ class HomeController < ApplicationController
 
   def index
     if session[:user_id]
+      load_twitter_data
+      load_vimeo_data
+      @posts = current_user.posts.order(posted_time: :desc) #.limit(20)
+    end
+  end
 
+  private
+
+  def find_twitter_provider
+    @provider = Provider.find_by_name_and_user_id("twitter", session[:user_id])
+  end
+
+  def create_twitter_client
+    find_twitter_provider
+
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_API_KEY"]
+      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+      config.access_token        = @provider.token
+      config.access_token_secret = @provider.secret
+    end
+  end
+
+  # only query api for newest tweets:
+  # keep track of timestamp for a user
+  # grab everything since then
+  def load_twitter_data
     create_twitter_client
     twitter_feeds = current_user.feeds.where(provider: "twitter")
 
     twitter_feeds.each do |feed|
-      # put this in a new method
       @client.user_timeline(feed.uid.to_i).each do |tweet|
-        # try find_or_create_by(uid: blahblahid)
-        #if tweet.id.nil?
         feed.posts.find_or_create_by(
           author_name: tweet.user.name,
           author_handle: tweet.user.handle,
@@ -23,12 +46,11 @@ class HomeController < ApplicationController
           uid: tweet.id.to_s,
           posted_time: tweet.created_at
         )
-        #end
-        end
       end
+    end
+  end
 
-    # VIMEO POSTS IN DB
-
+  def load_vimeo_data
     # get vimeo Feed objects only
     vimeo_feeds = current_user.feeds.find_all{ |feed| feed.provider == "vimeo" }
     # Get vimeo Feed uid's for searching api
@@ -42,13 +64,8 @@ class HomeController < ApplicationController
        filter_video_response(video_object)
      end
     end
-
     @filtered_videos.flatten!
     create_vimeo_posts(@filtered_videos)
-
-    @posts = current_user.posts.order("posted_time").limit(20)
-
-    end
   end
 
   def filter_video_response(raw_video_object)
@@ -73,34 +90,4 @@ class HomeController < ApplicationController
                   feed_id: feed_object.id)
     end
   end
-
-  def show
-  end
-
-  def create_twitter_client
-    @provider = Provider.find_by_user_id(session[:user_id])
-
-    @client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["TWITTER_API_KEY"]
-      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-      config.access_token        = Provider.find_by_user_id(session[:user_id]).token
-      config.access_token_secret = @provider.secret
-    end
-  end
-
-
-  def create_instagram_client
-    @provider = Provider.find_by_user_id(session[:user_id])
-
-     Instagram.configure do |config|
-      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
-      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
-      config.access_token =  Provider.find_by_user_id(session[:user_id]).token
-    end
-  end
-
-  def find_provider
-    @provider = Provider.find_by_user_id(session[:user_id])
-  end
-
 end
