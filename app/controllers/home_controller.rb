@@ -6,13 +6,18 @@ class HomeController < ApplicationController
 
   def index
     if session[:user_id]
-      load_twitter_data
+
       load_vimeo_data
+      load_twitter_data if current_user.providers.find_by(name: "twitter")
+      load_insta_data if current_user.providers.find_by(name: "instagram")
+
       @posts = current_user.posts.order(posted_time: :desc) #.limit(20)
     end
   end
 
   private
+
+  # TWITTER
 
   def find_twitter_provider
     @provider = Provider.find_by_name_and_user_id("twitter", session[:user_id])
@@ -49,6 +54,8 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  # VIMEO
 
   def load_vimeo_data
     # get vimeo Feed objects only
@@ -88,6 +95,35 @@ class HomeController < ApplicationController
                   content: video[:thumbnail],
                   uid: video[:uid].to_s,
                   feed_id: feed_object.id)
+    end
+  end
+
+  # INSTA
+
+  def load_insta_data
+    create_instagram_client
+    instagram_feeds = current_user.feeds.where(provider: "instagram")
+
+    instagram_feeds.each do |feed|
+      Instagram.client.user_recent_media(feed.uid.to_i).each do |ig|
+        feed.posts.find_or_create_by(author_name: ig["user"]["username"],
+        author_handle: ig["user"]["username"],
+        author_profile_pic: ig["user"]["profile_picture"],
+        content: ig["images"]["low_resolution"]["url"],
+        uid: ig["id"],
+        posted_time: Time.at(ig[:created_time].to_i)
+        )
+      end
+    end
+  end
+
+  def create_instagram_client
+    @insta_provider = Provider.find_by_name_and_user_id("instagram", session[:user_id])
+
+    Instagram.configure do |config|
+      config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
+      config.client_secret = ENV["INSTAGRAM_API_SECRET"]
+      config.access_token =  @insta_provider.token
     end
   end
 end
