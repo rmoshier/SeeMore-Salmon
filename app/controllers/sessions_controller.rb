@@ -39,10 +39,6 @@ class SessionsController < ApplicationController
   #     Provider.create()
   #   end
 
-
-
-
-
   private
 
   def find_provider
