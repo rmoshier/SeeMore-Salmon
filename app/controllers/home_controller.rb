@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     if session[:user_id]
 
       load_vimeo_data
-      load_twitter_data
+      load_twitter_data if current_user.providers.find_by(name: "twitter")
       load_insta_data if current_user.providers.find_by(name: "instagram")
 
       @posts = current_user.posts.order(posted_time: :desc) #.limit(20)
