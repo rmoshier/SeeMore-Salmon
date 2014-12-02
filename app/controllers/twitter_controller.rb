@@ -1,7 +1,5 @@
 class TwitterController < ApplicationController
-  before_action :current_user
-
-  # will this break is someone logs in using a non-Twitter provider?
+  before_action :require_login
 
   def new
     find_provider
@@ -24,14 +22,16 @@ class TwitterController < ApplicationController
     redirect_to root_path
   end
 
-  # Should these methods just be in a model instead?
   private
+
+  def require_login
+    redirect_to root_path if session[:user_id].nil?
+  end
 
   def find_provider
     @provider = Provider.find_by_name_and_user_id("twitter", session[:user_id])
   end
 
-  # Better way to do this with OmniAuth?
   def create_twitter_client
     find_provider
     @client = Twitter::REST::Client.new do |config|
@@ -42,5 +42,3 @@ class TwitterController < ApplicationController
     end
   end
 end
-
-# client.get_all_tweets("sferik")
