@@ -83,10 +83,10 @@ class HomeController < ApplicationController
   def create_vimeo_posts(filtered_videos)
     filtered_videos.each do |video|
       feed_object = Feed.find_by(uid: video[:user_id].to_s)
-      Post.create(author_name: video[:username],
+      Post.find_or_create_by(author_name: video[:username],
                   posted_time: video[:upload_date],
                   content: video[:thumbnail],
-                  uid: video[:uid],
+                  uid: video[:uid].to_s,
                   feed_id: feed_object.id)
     end
   end

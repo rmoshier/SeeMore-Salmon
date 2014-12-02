@@ -1,6 +1,7 @@
 <!-- Need to replace <br> with layout formatting -->
 <br>
 <div class="container">
+  <h1>Twitter User Search</h1>
   <%= form_tag(twitter_search_path, method: "get") do %>
     <%= label_tag(:username, "User Name")   %>
     <%= text_field_tag(:username) %>

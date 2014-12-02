@@ -54,6 +54,21 @@ h2 {
 /****************/
 /*Header Styling*/
 /****************/
+// connect accounts
+
+.connect {
+  padding-left: 0px;
+}
+
+.connect li{
+  list-style: none;
+}
+
+.connect a {
+  padding-right: 10px;
+}
+
+//
 
 .user-status {
   position: absolute;
@@ -96,10 +111,16 @@ header h1 {
 
 .logo {
   font-family: futura;
-  font-size: 1.8em;
+  font-size: 2.8em;
+  margin: 1em;
   color: rgb(50, 209, 202);
+  text-align: center;
 }
 
 .logout {
   padding-top: 0.7em;
+  padding-right: 0.7em;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

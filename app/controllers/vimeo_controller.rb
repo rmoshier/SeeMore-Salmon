@@ -5,6 +5,7 @@ class VimeoController < ApplicationController
   end
 
   def search
+    create_vimeo_client
     @name = params['search']
   end
 
@@ -35,7 +36,14 @@ class VimeoController < ApplicationController
 
   def show
     @name = params['search']
+    create_vimeo_client
     @users_info = Beemo::User.search("#{@name}")
+  end
+
+  private
+
+  def create_vimeo_client
+    Provider.find_by(user_id: session[:user_id], name: "vimeo").token
   end
 
 
