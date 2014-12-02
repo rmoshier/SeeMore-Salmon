@@ -57,14 +57,16 @@ class InstagramController < ApplicationController
   private
 
   def find_provider
-    @provider = Provider.find_by(user_id: session[:user_id], name: "instagram")
+    @provider = Provider.find_by_name_and_user_id("instagram", session[:user_id])
   end
 
   def create_instagram_client
+    find_provider
+    
     Instagram.configure do |config|
       config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
       config.client_secret = ENV["INSTAGRAM_API_SECRET"]
-      config.access_token =  Provider.find_by(user_id: session[:user_id], name: "instagram").token
+      config.access_token =  @provider.token
     end
   end
 
